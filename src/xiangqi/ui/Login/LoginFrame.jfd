@@ -1,0 +1,68 @@
+JFDML JFormDesigner: "8.2.4.0.393" Java: "21.0.8" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) {
+			"autoSize": false
+		} ) {
+			name: "loginFrame"
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "UsernameLabel"
+				"text": "Username:"
+				"font": new java.awt.Font( "Microsoft YaHei UI", 0, 14 )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 95
+				"y": 90
+				"height": 22
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "PasswordLabel"
+				"text": "Password:"
+				"font": new java.awt.Font( "Microsoft YaHei UI", 0, 14 )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 100
+				"y": 135
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "TitleLabel"
+				"text": "The Chinese Chess Login System"
+				"font": new java.awt.Font( "Segoe Print", 0, 18 )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 90
+				"y": 25
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "RegisterButton"
+				"text": "Register"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 130
+				"y": 185
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "LoginButton"
+				"text": "Login"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 260
+				"y": 185
+			} )
+			add( new FormComponent( "javax.swing.JPasswordField" ) {
+				name: "PasswordField"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 190
+				"y": 140
+				"width": 175
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "UsernameField"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 190
+				"y": 95
+				"width": 175
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 50, 80 )
+			"size": new java.awt.Dimension( 475, 275 )
+		} )
+	}
+}
