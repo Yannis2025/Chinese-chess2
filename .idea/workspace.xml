@@ -4,11 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa5716f5-5836-4edf-9801-7c42cf73b7bd" name="更改" comment="" />
+    <list default="true" id="fa5716f5-5836-4edf-9801-7c42cf73b7bd" name="更改" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/xiangqi/model/ChessBoardModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/xiangqi/model/ChessBoardModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/xiangqi/model/GeneralPiece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/xiangqi/model/GeneralPiece.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/xiangqi/test/OpenGameFrame.java" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -41,7 +54,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/计算机/Chinese-chess/src",
+    "last_opened_file_path": "D:/计算机/Chinese-chess/src/xiangqi/model",
     "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
     "应用程序.OpenGameFrame.executor": "Run",
     "应用程序.XiangqiApplication.executor": "Run"
@@ -49,12 +62,27 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\计算机\Chinese-chess\src\xiangqi\model" />
       <recent name="D:\计算机\Chinese-chess\src" />
       <recent name="D:\计算机\Chinese-chess" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\计算机\Chinese-chess\src\xiangqi\model" />
       <recent name="D:\计算机\Chinese-chess\src" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="Chinese-chess2" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="Chinese-chess2" />
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="默认任务">

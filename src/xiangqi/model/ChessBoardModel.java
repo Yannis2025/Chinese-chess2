@@ -112,22 +112,22 @@ public class ChessBoardModel {
                 }
             }
         }
-        if(result == 0){//=0时必然没有空指针
-            if (RedGeneralPiece.getCol()==BlackGeneralPiece.getCol()){
-                int Col = RedGeneralPiece.getCol();
-                if(lastColor){
-                    result--;//上一个颜色是红，下完黑方胜
-                }else {
-                    result++;//上一个颜色是黑。下完红方胜
-                }
-                for (int i = 0; i < 10; i++) {
-                    if (!(getPieceAt(i, Col) instanceof GeneralPiece) && !(Objects.equals(null, getPieceAt(i, Col)))) {
-                        result = 0;//如果同列上有一个非将棋子就继续游戏
-                        break;
-                    }
-                }
-            }
-        }
+//        if(result == 0){//=0时必然没有空指针
+//            if (RedGeneralPiece.getCol()==BlackGeneralPiece.getCol()){
+//                int Col = RedGeneralPiece.getCol();
+//                if(lastColor){
+//                    result--;//上一个颜色是红，下完黑方胜
+//                }else {
+//                    result++;//上一个颜色是黑。下完红方胜
+//                }
+//                for (int i = 0; i < 10; i++) {
+//                    if (!(getPieceAt(i, Col) instanceof GeneralPiece) && !(Objects.equals(null, getPieceAt(i, Col)))) {
+//                        result = 0;//如果同列上有一个非将棋子就继续游戏
+//                        break;
+//                    }
+//                }
+//            }
+//        }
         return result;//1为红赢，-1为黑赢，0为继续
     }
 
