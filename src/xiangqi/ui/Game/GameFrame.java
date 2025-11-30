@@ -1,5 +1,6 @@
 package xiangqi.ui.Game;
 
+import xiangqi.util.SoundManager;
 import xiangqi.model.ChessBoardModel;
 import xiangqi.model.SaveManager;
 import xiangqi.model.AbstractPiece;
@@ -19,6 +20,7 @@ public class GameFrame extends JFrame {
     private boolean isLoggedIn;
     private String username;
     private boolean gameEnded = false;
+    private SoundManager soundManager;
 
     public GameFrame(String title, boolean isLoggedIn, String username) {
         super(title);
@@ -26,19 +28,21 @@ public class GameFrame extends JFrame {
         this.username = username;
         this.saveManager = new SaveManager();
         this.controlPanel = new ControlPanel();
+        this.soundManager=SoundManager.getInstance();
 
         initializeGame();
         setupUI();
         setupEventListeners();
         setupWindowListener();
+
+        //播放背景音乐:
+        soundManager.playBackgroundMusic();
     }
 
     private void initializeGame() {
         // 登录用户且有存档：询问是否加载存档
         if (isLoggedIn && saveManager.hasSaveFile(username)) {
-            int choice = JOptionPane.showConfirmDialog(this,
-                    "检测到有存档，是否进入存档？",
-                    "加载存档",
+            int choice = JOptionPane.showConfirmDialog(this, "检测到有存档，是否进入存档？", "加载存档",
                     JOptionPane.YES_NO_OPTION,
                     JOptionPane.QUESTION_MESSAGE);
 
@@ -124,6 +128,8 @@ public class GameFrame extends JFrame {
     }
 
     private void handleWindowClosing() {
+        //停止背景音乐
+        soundManager.stopBackgroundMusic();
         if (gameEnded){
             this.dispose();//直接关闭游戏
             new xiangqi.ui.Login.LoginFrame().show();
@@ -151,20 +157,14 @@ public class GameFrame extends JFrame {
     }
 
     private void undoMove() {
-        // 悔棋功能
+        // 悔棋功能(未实现)
         JOptionPane.showMessageDialog(this, "悔棋功能待实现");
     }
 
     //开关音乐
     private void toggleMusic() {
-        boolean newMusicState = !controlPanel.isMusicOn();
-        controlPanel.updateMusicButton(newMusicState);
-
-        if (newMusicState) {
-            System.out.println("音乐开启");
-        } else {
-            System.out.println("音乐关闭");
-        }
+        soundManager.toggleMusic();
+        controlPanel.updateMusicButton(soundManager.isMusicEnabled());
     }
 
     private void newGame() {

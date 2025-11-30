@@ -1,5 +1,6 @@
 package xiangqi.ui.Game;
 
+import xiangqi.util.SoundManager;
 import xiangqi.model.AbstractPiece;
 import xiangqi.model.ChessBoardModel;
 
@@ -11,6 +12,7 @@ import java.awt.event.MouseEvent;
 public class ChessBoardPanel extends JPanel {
     private ChessBoardModel model;
     private final GameFrame gameFrame;
+    private SoundManager soundManager;
 
     private static final int BOARD_WIDTH = 800;
     private static final int BOARD_HEIGHT = 900;
@@ -25,7 +27,7 @@ public class ChessBoardPanel extends JPanel {
     public ChessBoardPanel(ChessBoardModel model, GameFrame gameFrame) {
         this.model = model;
         this.gameFrame = gameFrame;
-
+        this.soundManager=SoundManager.getInstance();//初始化
         setPreferredSize(new Dimension(BOARD_WIDTH, BOARD_HEIGHT));
         setBackground(new Color(220, 179, 92));
 
@@ -51,22 +53,37 @@ public class ChessBoardPanel extends JPanel {
         if (selectedPiece == null) {
             selectedPiece = model.getPieceAt(row, col);
         } else {
-            model.movePiece(selectedPiece, row, col);
+            //记录移动前是否有棋子被吃
+            AbstractPiece targetPiece=model.getPieceAt(row,col);
+            boolean isEat = targetPiece!=null&&targetPiece.isRed()!=selectedPiece.isRed();
+            //移动棋子
+            boolean moveSuccess=model.movePiece(selectedPiece, row, col);
+
+            if (moveSuccess) {
+                // 播放音效：吃子优先于移动
+                if (isEat) {
+                    soundManager.playSound("eat");
+                } else {
+                    soundManager.playSound("move");
+                }
+            }
             selectedPiece = null;
         }
-
+        int winCondition = model.winCondition();
         if(model.winCondition() == 1){
             gameEnded=true;
             setVisible(false);
             //差红方胜利ui
-            JOptionPane.showMessageDialog(this,"红方胜利");
+            soundManager.stopBackgroundMusic();  // 停止背景音乐
+            soundManager.playSound("win");
             gameFrame.setGameEnded(true);
         }
         if(model.winCondition() == -1){
             gameEnded=true;
             setVisible(false);
             //差黑方胜利ui
-            JOptionPane.showMessageDialog(this,"黑方胜利");
+            soundManager.stopBackgroundMusic();  // 停止背景音乐
+            soundManager.playSound("win");
             gameFrame.setGameEnded(true);
         }
 
