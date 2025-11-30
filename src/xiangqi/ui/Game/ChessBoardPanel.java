@@ -9,27 +9,26 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class ChessBoardPanel extends JPanel {
-    private final ChessBoardModel model;
-    /**
-     * 单个棋盘格子的尺寸（px）
-     */
-    private static final int CELL_SIZE = 64;
-    /**
-     * 棋盘边界与窗口边界的边距
-     */
-    private static final int MARGIN = 40;
-    /**
-     * 棋子的半径
-     */
-    private static final int PIECE_RADIUS = 35;
+    private ChessBoardModel model;
+    private final GameFrame gameFrame;
+
+    private static final int BOARD_WIDTH = 800;
+    private static final int BOARD_HEIGHT = 900;
+    private static final int CELL_SIZE = 87;
+    private static final int MARGIN_X = 44;
+    private static final int MARGIN_Y = 44;
+    private static final int PIECE_RADIUS = 46;
+
     private AbstractPiece selectedPiece = null;
-     public ChessBoardPanel(ChessBoardModel model) {
+    private boolean gameEnded=false;
+
+    public ChessBoardPanel(ChessBoardModel model, GameFrame gameFrame) {
         this.model = model;
-        setPreferredSize(new Dimension(
-                CELL_SIZE * (ChessBoardModel.getCols() - 1) + MARGIN * 2,
-                CELL_SIZE * (ChessBoardModel.getRows() - 1) + MARGIN * 2
-        ));
+        this.gameFrame = gameFrame;
+
+        setPreferredSize(new Dimension(BOARD_WIDTH, BOARD_HEIGHT));
         setBackground(new Color(220, 179, 92));
+
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -39,8 +38,11 @@ public class ChessBoardPanel extends JPanel {
     }
 
     private void handleMouseClick(int x, int y) {
-        int col = Math.round((float)(x - MARGIN) / CELL_SIZE);
-        int row = Math.round((float)(y - MARGIN) / CELL_SIZE);
+        if (gameEnded)
+            return;
+
+        int col = Math.round((float)(x - MARGIN_X) / CELL_SIZE);
+        int row = Math.round((float)(y - MARGIN_Y) / CELL_SIZE);
 
         if (!model.isValidPosition(row, col)) {
             return;
@@ -54,20 +56,22 @@ public class ChessBoardPanel extends JPanel {
         }
 
         if(model.winCondition() == 1){
+            gameEnded=true;
             setVisible(false);
-            //+红方胜利UI
+            //差红方胜利ui
+            JOptionPane.showMessageDialog(this,"红方胜利");
+            gameFrame.setGameEnded(true);
         }
         if(model.winCondition() == -1){
+            gameEnded=true;
             setVisible(false);
-            //+黑方胜利UI
+            //差黑方胜利ui
+            JOptionPane.showMessageDialog(this,"黑方胜利");
+            gameFrame.setGameEnded(true);
         }
 
-        // 处理完点击事件后，需要重新绘制ui界面才能让界面上的棋子“移动”起来
-        // Swing 会将多个请求合并后再重新绘制，因此调用 repaint 后gui不会立刻变更
-        // repaint 中会调用 paintComponent，从而重新绘制gui上棋子的位置等
         repaint();
     }
-
 
     @Override
     protected void paintComponent(Graphics g) {
@@ -75,45 +79,34 @@ public class ChessBoardPanel extends JPanel {
         Graphics2D g2d = (Graphics2D) g;
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-        // Demo的GUI都是由Swing中基本的组件组成的，比如背景的格子是用许多个line组合起来实现的，棋子是先绘制一个circle再在上面绘制一个text实现的
-        // 因此绘制GUI的过程中需要自己手动计算每个组件的位置（坐标）
         drawBoard(g2d);
         drawPieces(g2d);
     }
 
-    /**
-     * 绘制棋盘
-     */
     private void drawBoard(Graphics2D g) {
-        Toolkit toolkit = Toolkit.getDefaultToolkit();
-        Image Chessboard =  toolkit.getImage("src/resources/Background/棋盘.png");
-        g.drawImage(Chessboard,0,0,2*MARGIN+8*CELL_SIZE,2*MARGIN+9*CELL_SIZE,this);
+        Image chessboard = Toolkit.getDefaultToolkit().getImage("src/resources/Background/棋盘.png");
+        g.drawImage(chessboard, 0, 0, BOARD_WIDTH, BOARD_HEIGHT, this);
     }
-    /**
-     * 绘制棋子
-     */
+
     private void drawPieces(Graphics2D g) {
-        // 遍历棋盘上的每一个棋子，每次循环绘制该棋子
         for (AbstractPiece piece : model.getPieces()) {
-            // 计算每一个棋子的坐标
-            int x = MARGIN + piece.getCol() * CELL_SIZE;
-            int y = MARGIN + piece.getRow() * CELL_SIZE;
+            int x = MARGIN_X + 11 + piece.getCol() * CELL_SIZE;  // 额外加15像素
+            int y = MARGIN_Y + 11 + piece.getRow() * CELL_SIZE;  // 额外加15像素
 
             boolean isSelected = (piece == selectedPiece);
-            Toolkit toolkit = Toolkit.getDefaultToolkit();
-            Image chess= toolkit.getImage("src/resources/Chess/"+piece.getName()+".png");
-            g.drawImage(chess,x - PIECE_RADIUS, y - PIECE_RADIUS, PIECE_RADIUS * 2, PIECE_RADIUS * 2,this);
+
+            Image chess = Toolkit.getDefaultToolkit().getImage(
+                    "src/resources/Chess/" + piece.getName() + ".png");
+            g.drawImage(chess, x - PIECE_RADIUS, y - PIECE_RADIUS,
+                    PIECE_RADIUS * 2, PIECE_RADIUS * 2, this);
+
             if (isSelected) {
                 drawCornerBorders(g, x, y);
             }
         }
     }
 
-    /**
-     * 绘制选中棋子时的蓝色外边框效果
-     */
     private void drawCornerBorders(Graphics2D g, int centerX, int centerY) {
-
         if(model.getlastColor()){
             g.setColor(new Color(50, 50, 50));
         }else{
@@ -123,8 +116,6 @@ public class ChessBoardPanel extends JPanel {
 
         int cornerSize = 32;
         int lineLength = 12;
-
-        // 选中效果的边框实际上是8条line，每两个line组成一个角落的边框
 
         // 左上角的边框
         g.drawLine(centerX - cornerSize, centerY - cornerSize,
@@ -147,7 +138,16 @@ public class ChessBoardPanel extends JPanel {
         // 右下角的边框
         g.drawLine(centerX + cornerSize, centerY + cornerSize,
                 centerX + cornerSize - lineLength, centerY + cornerSize);
-       g.drawLine(centerX + cornerSize, centerY + cornerSize,
+        g.drawLine(centerX + cornerSize, centerY + cornerSize,
                 centerX + cornerSize, centerY + cornerSize - lineLength);
     }
+
+    public void setModel(ChessBoardModel model) {
+        this.model = model;
+        this.selectedPiece = null;
+        repaint();
+    }
+
+    public boolean isGameEnded(){return gameEnded;}
+
 }

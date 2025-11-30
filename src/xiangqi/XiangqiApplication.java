@@ -9,6 +9,5 @@ public class XiangqiApplication {
             LoginFrame loginFrame=new LoginFrame();
             loginFrame.show();
         });
-
     }
 }

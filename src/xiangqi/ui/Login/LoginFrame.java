@@ -6,11 +6,9 @@ package xiangqi.ui.Login;
 import java.awt.*;
 import javax.swing.*;
 
-import xiangqi.model.ChessBoardModel;
 import xiangqi.ui.Game.GameFrame;
 import xiangqi.ui.register.validator;
 import xiangqi.ui.register.RegisterFrame;
-import xiangqi.ui.Game.ChessBoardPanel;
 
 /**
  * @author yanni
@@ -28,10 +26,10 @@ public class LoginFrame  {
         loginFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     //打开象棋界面
-    private void openChessBoard(){
+    private void openChessBoard(boolean isLoggedIn, String username){
         loginFrame.dispose();//关闭当前登录界面
         SwingUtilities.invokeLater(() -> {
-            GameFrame frame = new GameFrame("中国象棋");
+            GameFrame frame = new GameFrame("中国象棋", isLoggedIn, username);
             frame.setVisible(true);//加按钮直接在这里调，不需要动ChessBoardPanel
         });
 
@@ -51,7 +49,7 @@ public class LoginFrame  {
             String username=UsernameField.getText();
             String password=new String(PasswordField.getPassword());
             if (validator.validate(username,password)){
-                openChessBoard();
+                openChessBoard(true,username);
             }else {
                 //使用JOptionPane类创建弹出对话框,用showMessageDialog方法显示错误信息
                 JOptionPane.showMessageDialog(loginFrame,"Invalid username or password!");
@@ -60,6 +58,9 @@ public class LoginFrame  {
         });
         RegisterButton.addActionListener(e -> {
             openRegisterFrame();
+        });
+        GuestLoginButton.addActionListener(e -> {
+            openChessBoard(false,"Guest");
         });
     }
     /*private void testClickButton(){
@@ -87,10 +88,11 @@ public class LoginFrame  {
         LoginButton = new JButton();
         PasswordField = new JPasswordField();
         UsernameField = new JTextField();
+        GuestLoginButton = new JButton();
 
         //======== loginFrame ========
         {
-            Container loginFrameContentPane = loginFrame.getContentPane();
+            var loginFrameContentPane = loginFrame.getContentPane();
             loginFrameContentPane.setLayout(null);
 
             //---- UsernameLabel ----
@@ -119,13 +121,18 @@ public class LoginFrame  {
             //---- LoginButton ----
             LoginButton.setText("Login");
             loginFrameContentPane.add(LoginButton);
-            LoginButton.setBounds(new Rectangle(new Point(260, 185), LoginButton.getPreferredSize()));
+            LoginButton.setBounds(260, 185, 80, LoginButton.getPreferredSize().height);
             loginFrameContentPane.add(PasswordField);
             PasswordField.setBounds(190, 140, 175, PasswordField.getPreferredSize().height);
             loginFrameContentPane.add(UsernameField);
             UsernameField.setBounds(190, 95, 175, UsernameField.getPreferredSize().height);
 
-            loginFrameContentPane.setPreferredSize(new Dimension(475, 275));
+            //---- GuestLoginButton ----
+            GuestLoginButton.setText("Guest Login");
+            loginFrameContentPane.add(GuestLoginButton);
+            GuestLoginButton.setBounds(165, 230, 135, 25);
+
+            loginFrameContentPane.setPreferredSize(new Dimension(475, 300));
             loginFrame.pack();
             loginFrame.setLocationRelativeTo(loginFrame.getOwner());
         }
@@ -142,5 +149,6 @@ public class LoginFrame  {
     private JButton LoginButton;
     private JPasswordField PasswordField;
     private JTextField UsernameField;
+    private JButton GuestLoginButton;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }

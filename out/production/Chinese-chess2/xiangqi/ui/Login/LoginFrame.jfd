@@ -45,6 +45,7 @@ new FormModel {
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"x": 260
 				"y": 185
+				"width": 80
 			} )
 			add( new FormComponent( "javax.swing.JPasswordField" ) {
 				name: "PasswordField"
@@ -60,9 +61,18 @@ new FormModel {
 				"y": 95
 				"width": 175
 			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "GuestLoginButton"
+				"text": "Guest Login"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 165
+				"y": 230
+				"height": 25
+				"width": 135
+			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 50, 80 )
-			"size": new java.awt.Dimension( 475, 275 )
+			"location": new java.awt.Point( 50, 35 )
+			"size": new java.awt.Dimension( 475, 300 )
 		} )
 	}
 }

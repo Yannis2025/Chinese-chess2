@@ -15,7 +15,7 @@ import xiangqi.ui.Login.LoginFrame;
  */
 public class RegisterFrame extends JFrame {
     public RegisterFrame() {
-        initComponents();
+       initComponents();
        clickCancel();
        clickConfirm();
     }
@@ -32,22 +32,45 @@ public class RegisterFrame extends JFrame {
         ConfirmButton.addActionListener(e -> {
             String username=NewUsernameField.getText();
             String password=new String(NewPasswordField.getPassword());
-            save(username,password);
+            // 输入验证
+            if (username.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "用户名不能为空！");
+                return;
+            }
 
-            this.dispose();
-            LoginFrame loginFrame=new LoginFrame();
-            loginFrame.show();
+            if (password.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "密码不能为空！");
+                return;
+            }
+
+            if (validator.userExists(username)){
+                JOptionPane.showMessageDialog(this,"用户名已存在!");
+                return;
+            }
+            if (save(username,password)){
+                JOptionPane.showMessageDialog(this,"注册成功!");
+                this.dispose();
+                LoginFrame loginFrame=new LoginFrame();
+                loginFrame.show();
+            }else {
+                JOptionPane.showMessageDialog(this,"注册失败,请重试!");
+            }
+
+
+
         });
     }
-    private void save(String username,String password){
+    private boolean save(String username,String password){
         try {
             BufferedWriter writer=new BufferedWriter(new FileWriter("UserInformation",true));
             writer.newLine();
             writer.write(username+","+password);
             writer.flush();
             writer.close();
+            return true;
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.err.println("保存用户信息失败:"+e.getMessage());
+            return false;
         }
     }
     //RegisterFrame组件放置

@@ -1,18 +1,31 @@
 package xiangqi.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class ChessBoardModel {
+public class ChessBoardModel implements Serializable {
     // 储存棋盘上所有的棋子，要实现吃子的话，直接通过pieces.remove(被吃掉的棋子)删除就可以
-    private final List<AbstractPiece> pieces;
+    private List<AbstractPiece> pieces;
     private static final int ROWS = 10;
     private static final int COLS = 9;
+    private boolean isRedTurn = true; // 红方先行
 
     public ChessBoardModel() {
         pieces = new ArrayList<>();
         initializePieces();
+    }
+    public boolean isRedTurn() {
+        return isRedTurn;
+    }
+
+    public void setRedTurn(boolean isRedTurn) {
+        this.isRedTurn = isRedTurn;
+    }
+
+    public void setPieces(List<AbstractPiece> pieces) {
+        this.pieces = new ArrayList<>(pieces);
     }
     private void initializePieces() {
         // 黑方棋子

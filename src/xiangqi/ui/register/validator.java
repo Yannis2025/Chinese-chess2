@@ -21,37 +21,23 @@ public class validator {
         }
         return false;//没一行匹配就return false
     }
-
-/*public static boolean testValidate(String username, String password){
-    // 检查文件
-    File file = new File(UserFile);
-    System.out.println("文件绝对路径: " + file.getAbsolutePath());
-    System.out.println("文件是否存在: " + file.exists());
-
-    if (!file.exists()) {
-        System.out.println("请把 UserInformation.txt 放在这个目录: " + System.getProperty("user.dir"));
-        return false;
-    }
-    System.out.println("调试：开始验证 " + username + "/" + password);
-
-    try(BufferedReader reader=new BufferedReader(new FileReader(UserFile))){
-        String line;
-        int lineCount = 0;
-        while ((line=reader.readLine())!=null){
-            lineCount++;
-            System.out.println("调试：第" + lineCount + "行: " + line);
-            if (line.equals(username+","+password)) {
-                System.out.println("调试：匹配成功！");
-                return true;
+    //若不使用静态方法,validator的方法时就必须要先创建一个对象:
+    //Validator validator = new Validator();
+    //因为静态方法的特性就是1.可以没有对象就能直接通过类名调用2.属于类,所有对象共享同一个方法
+    //(实例方法属于对象,每个对象都有自己的方法副本)
+    public static boolean userExists(String username){
+        try (BufferedReader reader=new BufferedReader(new FileReader(UserFile))){
+            String line;
+            while ((line=reader.readLine())!=null){
+                String[] parts=line.split(",");//以","为分界,把原文本分为part[0](用户名),part[1](密码)
+                if(parts.length>0&&parts[0].equals(username)){
+                    return true;
+                }
             }
+        }catch (IOException e){
+            //username与所有part[0]均不匹配,用户不存在
         }
-        System.out.println("调试：遍历了 " + lineCount + " 行，没有匹配");
-    }catch (IOException e){
-        System.out.println("调试：文件读取错误: " + e.getMessage());
         return false;
     }
-    return false;
-}*/
-//fuck!这一段搞我好久,原来是不用带txt后缀!
 
 }
