@@ -168,6 +168,13 @@ public class GameFrame extends JFrame {
     }
 
     private void newGame() {
+        //若一方胜出,再点击newGame会直接开始新游戏
+        if(gameEnded){
+            startNewGame();
+            boardPanel.repaint();
+            return;
+        }
+        //中途点会先询问
         int choice = JOptionPane.showConfirmDialog(this, "开始新游戏将丢失当前进度，确定吗？", "新游戏",
                 JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 
