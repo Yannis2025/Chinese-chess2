@@ -98,7 +98,7 @@ public class ControlPanel extends JPanel {
         redNicknameLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         redNicknameLabel.setHorizontalAlignment(SwingConstants.CENTER);
         redNicknameLabel.setFont(new Font("楷体", Font.BOLD, 19));
-        redNicknameLabel.setForeground(new Color(200, 0, 0));
+        redNicknameLabel.setForeground(new Color(150, 0, 0));
         redNicknameLabel.setMaximumSize(new Dimension(140, 30));
     }
 

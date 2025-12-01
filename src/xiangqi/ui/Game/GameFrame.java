@@ -43,7 +43,10 @@ public class GameFrame extends JFrame {
         }else {
             this.blackNickname="黑方";
         }
-        initializeGame();
+        // 如果传入了昵称参数（从UserIDFrame来的），说明是开始新游戏，不询问存档
+        boolean isNewGameFromUserID = (redNickname != null && !redNickname.trim().isEmpty()) ||
+                (blackNickname != null && !blackNickname.trim().isEmpty());
+        initializeGame(isNewGameFromUserID);
         setupUI();
         setupEventListeners();
         setupWindowListener();
@@ -90,9 +93,14 @@ public class GameFrame extends JFrame {
         }
     }
 
-    private void initializeGame() {
+    private void initializeGame(boolean isNewGame) {
+        // 如果是新游戏（从UserIDFrame来的）或者用户是游客，直接开始新游戏
+        if (isNewGame || username.equals("Guest")) {
+            startNewGame();
+            return;
+        }
         // 登录用户且有存档：询问是否加载存档
-        if (isLoggedIn && saveManager.hasSaveFile(username)) {
+        if (saveManager.hasSaveFile(username)) {
             int choice = JOptionPane.showConfirmDialog(this, "检测到有存档，是否进入存档？", "加载存档",
                     JOptionPane.YES_NO_OPTION,
                     JOptionPane.QUESTION_MESSAGE);
@@ -103,7 +111,7 @@ public class GameFrame extends JFrame {
             }
         }
 
-        // 新游戏
+        // 无存档或用户不进入存档,开始新游戏
         startNewGame();
     }
 

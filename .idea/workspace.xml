@@ -6,10 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="fa5716f5-5836-4edf-9801-7c42cf73b7bd" name="更改" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Chinese-chess2/xiangqi/ui/Game/ControlPanel$Icon$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Chinese-chess2/xiangqi/ui/Game/ControlPanel$Icon$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Chinese-chess2/xiangqi/ui/Game/ControlPanel$Icon.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Chinese-chess2/xiangqi/ui/Game/ControlPanel$Icon.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Chinese-chess2/xiangqi/ui/Game/ControlPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Chinese-chess2/xiangqi/ui/Game/ControlPanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/xiangqi/ui/Game/ControlPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/xiangqi/ui/Game/ControlPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/xiangqi/ui/Game/GameFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/xiangqi/ui/Game/GameFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/xiangqi/ui/Login/UserIDFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/xiangqi/ui/Login/UserIDFrame.java" afterDir="false" />
     </list>
@@ -96,13 +92,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/xiangqi/ui/Login/UserIDFrame.java</url>
-          <line>238</line>
+          <line>250</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/xiangqi/ui/Login/UserIDFrame.java</url>
-          <line>146</line>
-          <properties class="xiangqi.ui.Login.UserIDFrame" method="validateInput">
+          <line>158</line>
+          <properties class="UserIDFrame" method="validateInput">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
@@ -137,7 +133,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/xiangqi/ui/Game/GameFrame.java</url>
-          <line>229</line>
+          <line>237</line>
           <properties class="xiangqi.ui.Game.GameFrame" method="toggleMusic">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />

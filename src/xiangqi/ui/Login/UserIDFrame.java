@@ -28,16 +28,28 @@ public class UserIDFrame extends JFrame {
         initComponents();
 
         if (isLoggedIn && !username.equals("Guest") && saveManager.hasSaveFile(username)) {
-            // 有存档，直接进入游戏
-            enterGameDirectly();
-        } else {
-            // 无存档，显示昵称输入界面
-            setupEventListeners();
-            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            this.setVisible(true);
-            this.setLocationRelativeTo(null);
+            // 有存档，询问是否加载存档
+            int choice = JOptionPane.showConfirmDialog(this,
+                    "检测到有存档，是否进入存档？",
+                    "加载存档",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE);
+
+            if (choice == JOptionPane.YES_OPTION) {
+                // 用户选择"是"，直接进入游戏
+                enterGameDirectly();
+                return;  // 直接返回，不显示昵称输入界面
+            }
+            // 用户选择"否"，继续显示昵称输入界面
         }
+
+        // 无存档或用户选择不加载存档，显示昵称输入界面
+        setupEventListeners();
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setVisible(true);
+        this.setLocationRelativeTo(null);
     }
+
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
