@@ -19,7 +19,7 @@ public class SaveManager {
 
     }
 
-    public boolean saveGame(String username,ChessBoardModel model){
+    public boolean saveGame(String username,ChessBoardModel model,String redNickname, String blackNickname){
         if (username.equals("Guest")){
             return false;
         }
@@ -31,6 +31,8 @@ public class SaveManager {
             saveData.put("pieces",model.getPieces());
             saveData.put("isRedTurn",model.isRedTurn());
             saveData.put("username",username);
+            saveData.put("redNickname", redNickname);
+            saveData.put("blackNickname", blackNickname);
             oos.writeObject(saveData);//序列化写入,把整个Map对象序列化写入文件
             oos.flush();
             return true;
@@ -70,5 +72,14 @@ public class SaveManager {
         return SAVE_DIR+File.separator+username+SAVE_EXTENSION;
         //File.separator,跨平台路径分隔符
     }
-
+    public boolean deleteSaveFile(String username) {
+        if (username.equals("Guest")) {
+            return false;
+        }
+        File saveFile = new File(getSaveFilePath(username));
+        if (saveFile.exists()) {
+            return saveFile.delete();
+        }
+        return true; // 文件不存在也算删除成功
+    }
 }

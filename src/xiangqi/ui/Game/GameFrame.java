@@ -24,14 +24,16 @@ public class GameFrame extends JFrame {
     private String redNickname = "红方";
     private String blackNickname = "黑方";
 
-    public GameFrame(String title, boolean isLoggedIn, String username) {
+    public GameFrame(String title, boolean isLoggedIn, String username, String redNickname, String blackNickname) {
         super(title);
         this.isLoggedIn = isLoggedIn;
         this.username = username;
         this.saveManager = new SaveManager();
         this.controlPanel = new ControlPanel();
         this.soundManager=SoundManager.getInstance();
-
+        // 设置昵称
+        this.redNickname = (redNickname != null && !redNickname.trim().isEmpty()) ? redNickname.trim() : "红方";//没有或为空----输入或默认
+        this.blackNickname = (blackNickname != null && !blackNickname.trim().isEmpty()) ? blackNickname.trim() : "黑方";
         initializeGame();
         setupUI();
         setupEventListeners();
@@ -40,12 +42,24 @@ public class GameFrame extends JFrame {
         //播放背景音乐:
         soundManager.playBackgroundMusic();
     }
-    // 新增：设置昵称的方法
+    // 简化构造函数，用于有存档的情况
+    public GameFrame(String title, boolean isLoggedIn, String username) {
+        this(title, isLoggedIn, username, null, null);
+    }
+    // 设置昵称
     public void setRedNickname(String nickname) {
         if (nickname != null && !nickname.trim().isEmpty()) {
             this.redNickname = nickname.trim();
             // 这里后续可以在控制面板显示红方昵称
         }
+    }
+
+    // 保存游戏（总是包含昵称）
+    private boolean saveGame() {
+        if (isLoggedIn && !username.equals("Guest")) {
+            return saveManager.saveGame(username, model, redNickname, blackNickname);
+        }
+        return false;
     }
     public void setBlackNickname(String nickname) {
         if (nickname != null && !nickname.trim().isEmpty()) {
@@ -54,6 +68,12 @@ public class GameFrame extends JFrame {
         }
     }
 
+    public void deleteSaveFile() {
+        // 只有登录用户才需要删除存档
+        if (isLoggedIn && !username.equals("Guest")) {
+            boolean deleted = saveManager.deleteSaveFile(username);
+        }
+    }
     private void initializeGame() {
         // 登录用户且有存档：询问是否加载存档
         if (isLoggedIn && saveManager.hasSaveFile(username)) {
@@ -67,7 +87,7 @@ public class GameFrame extends JFrame {
             }
         }
 
-        // 新游戏（游客或用户选择新游戏）
+        // 新游戏
         startNewGame();
     }
 
@@ -79,6 +99,13 @@ public class GameFrame extends JFrame {
                 @SuppressWarnings("unchecked")
                 List<AbstractPiece> pieces = (List<AbstractPiece>) saveData.get("pieces");
                 boolean isRedTurn = (Boolean) saveData.get("isRedTurn");
+                // 从存档中加载昵称
+                if (saveData.containsKey("redNickname")) {
+                    redNickname = (String) saveData.get("redNickname");
+                }
+                if (saveData.containsKey("blackNickname")) {
+                    blackNickname = (String) saveData.get("blackNickname");
+                }
 
                 model.setPieces(pieces);
                 model.setRedTurn(isRedTurn);
@@ -156,7 +183,7 @@ public class GameFrame extends JFrame {
                     JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
             if (choice == JOptionPane.YES_OPTION) {
-                boolean saved = saveManager.saveGame(username, model);
+                boolean saved = saveGame();
                 if (saved) {
                     JOptionPane.showMessageDialog(this, "游戏已保存！");
                 } else {

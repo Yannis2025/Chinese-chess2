@@ -53,14 +53,14 @@ new FormModel {
 				name: "PasswordField"
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"x": 190
-				"y": 140
+				"y": 145
 				"width": 175
 			} )
 			add( new FormComponent( "javax.swing.JTextField" ) {
 				name: "UsernameField"
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"x": 190
-				"y": 90
+				"y": 95
 				"width": 175
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {

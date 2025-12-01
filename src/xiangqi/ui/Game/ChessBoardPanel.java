@@ -76,6 +76,7 @@ public class ChessBoardPanel extends JPanel {
             //差红方胜利ui
             soundManager.stopBackgroundMusic();  // 停止背景音乐
             soundManager.playSound("win");
+            gameFrame.deleteSaveFile();
             gameFrame.setGameEnded(true);
         }
         if(model.winCondition() == -1){
@@ -84,6 +85,7 @@ public class ChessBoardPanel extends JPanel {
             //差黑方胜利ui
             soundManager.stopBackgroundMusic();  // 停止背景音乐
             soundManager.playSound("win");
+            gameFrame.deleteSaveFile();
             gameFrame.setGameEnded(true);
         }
 

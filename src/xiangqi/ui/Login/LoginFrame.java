@@ -4,6 +4,8 @@
 
 package xiangqi.ui.Login;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import javax.swing.*;
 
 import xiangqi.ui.Game.GameFrame;
@@ -18,7 +20,30 @@ public class LoginFrame  {
     public LoginFrame() {
         initComponents();
         clickButton();
-        //testClickButton();
+        setupEnterKeyListener();
+    }
+    //新增：设置回车键监听
+    private void setupEnterKeyListener() {
+        // 在密码框上添加回车键监听
+        PasswordField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    // 触发登录按钮的点击事件
+                    LoginButton.doClick();
+                }
+            }
+        });
+        // 在用户名框上添加回车键监听（回车后跳转到密码框）
+        UsernameField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    // 将焦点移动到密码框
+                    PasswordField.requestFocus();
+                }
+            }
+        });
     }
     //显示可见+exitOnClose
     public void show(){
@@ -63,6 +88,7 @@ public class LoginFrame  {
         GuestLoginButton.addActionListener(e -> {
             openChessBoard(false,"Guest");
         });
+
     }
     /*private void testClickButton(){
         LoginButton.addActionListener(e -> {
@@ -126,9 +152,9 @@ public class LoginFrame  {
             loginFrameContentPane.add(LoginButton);
             LoginButton.setBounds(260, 185, 80, LoginButton.getPreferredSize().height);
             loginFrameContentPane.add(PasswordField);
-            PasswordField.setBounds(190, 140, 175, PasswordField.getPreferredSize().height);
+            PasswordField.setBounds(190, 145, 175, PasswordField.getPreferredSize().height);
             loginFrameContentPane.add(UsernameField);
-            UsernameField.setBounds(190, 90, 175, UsernameField.getPreferredSize().height);
+            UsernameField.setBounds(190, 95, 175, UsernameField.getPreferredSize().height);
 
             //---- GuestLoginButton ----
             GuestLoginButton.setText("Guest Login");

@@ -4,6 +4,7 @@
 
 package xiangqi.ui.Login;
 
+import xiangqi.model.SaveManager;
 import xiangqi.ui.Game.GameFrame;
 
 import java.awt.*;
@@ -17,15 +18,27 @@ public class UserIDFrame extends JFrame {
     private String blackID="";
     private boolean isLoggedIn;
     private String username;
+    private SaveManager saveManager;
 
 
     public UserIDFrame(boolean isLoggedIn, String username) {
         this.isLoggedIn = isLoggedIn;
         this.username = username;
+        this.saveManager = new SaveManager();
         initComponents();
-        setupEventListeners();
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        if (isLoggedIn && !username.equals("Guest") && saveManager.hasSaveFile(username)) {
+            // 有存档，直接进入游戏
+            enterGameDirectly();
+        } else {
+            // 无存档，显示昵称输入界面
+            setupEventListeners();
+            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            this.setVisible(true);
+            this.setLocationRelativeTo(null);
+        }
     }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         // Generated using JFormDesigner Evaluation license - 苏云翼
@@ -99,11 +112,6 @@ public class UserIDFrame extends JFrame {
     private JButton ConfirmButton;
     private JButton DirectStartButton;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
-    private void setupListeners(){
-        CancelButton.addActionListener(e -> {
-
-        });
-    }
 
     private void setupEventListeners() {
         // 取消按钮,返回登录界面
@@ -206,6 +214,14 @@ public class UserIDFrame extends JFrame {
             gameFrame.setRedNickname(redID);
             gameFrame.setBlackNickname(blackID);
 
+            gameFrame.setVisible(true);
+        });
+    }
+    private void enterGameDirectly() {
+        this.dispose();
+        SwingUtilities.invokeLater(() -> {
+            // 有存档时，使用简化构造函数，昵称会在加载存档时获取
+            GameFrame gameFrame = new GameFrame("中国象棋", isLoggedIn, username);
             gameFrame.setVisible(true);
         });
     }
