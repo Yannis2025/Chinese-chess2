@@ -208,12 +208,7 @@ public class UserIDFrame extends JFrame {
     private void enterGame() {
         this.dispose();
         SwingUtilities.invokeLater(() -> {
-            GameFrame gameFrame = new GameFrame("中国象棋", isLoggedIn, username);
-
-            // 设置昵称（这里只是保存，后续你可以在游戏界面显示）
-            gameFrame.setRedNickname(redID);
-            gameFrame.setBlackNickname(blackID);
-
+            GameFrame gameFrame = new GameFrame("中国象棋", isLoggedIn, username,redID,blackID);
             gameFrame.setVisible(true);
         });
     }

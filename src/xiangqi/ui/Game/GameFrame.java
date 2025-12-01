@@ -24,6 +24,7 @@ public class GameFrame extends JFrame {
     private String redNickname = "红方";
     private String blackNickname = "黑方";
 
+    //构造函数,无存档
     public GameFrame(String title, boolean isLoggedIn, String username, String redNickname, String blackNickname) {
         super(title);
         this.isLoggedIn = isLoggedIn;
@@ -32,26 +33,30 @@ public class GameFrame extends JFrame {
         this.controlPanel = new ControlPanel();
         this.soundManager=SoundManager.getInstance();
         // 设置昵称
-        this.redNickname = (redNickname != null && !redNickname.trim().isEmpty()) ? redNickname.trim() : "红方";//没有或为空----输入或默认
-        this.blackNickname = (blackNickname != null && !blackNickname.trim().isEmpty()) ? blackNickname.trim() : "黑方";
+        if (redNickname != null && !redNickname.trim().isEmpty()) {
+            this.redNickname = redNickname.trim();
+        }else {
+            this.redNickname="红方";
+        }
+        if (blackNickname != null && !blackNickname.trim().isEmpty()) {
+            this.blackNickname = blackNickname.trim();
+        }else {
+            this.blackNickname="黑方";
+        }
         initializeGame();
         setupUI();
         setupEventListeners();
         setupWindowListener();
 
+        // 设置ControlPanel中的昵称显示
+        controlPanel.setNicknames(this.blackNickname, this.redNickname);
         //播放背景音乐:
         soundManager.playBackgroundMusic();
     }
+
     // 简化构造函数，用于有存档的情况
     public GameFrame(String title, boolean isLoggedIn, String username) {
-        this(title, isLoggedIn, username, null, null);
-    }
-    // 设置昵称
-    public void setRedNickname(String nickname) {
-        if (nickname != null && !nickname.trim().isEmpty()) {
-            this.redNickname = nickname.trim();
-            // 这里后续可以在控制面板显示红方昵称
-        }
+        this(title, isLoggedIn, username, "红方", "黑方");
     }
 
     // 保存游戏（总是包含昵称）
@@ -61,10 +66,20 @@ public class GameFrame extends JFrame {
         }
         return false;
     }
+
+    // 设置昵称
+    public void setRedNickname(String nickname) {
+        if (nickname != null && !nickname.trim().isEmpty()) {
+            this.redNickname = nickname.trim();
+            controlPanel.setNicknames(blackNickname, redNickname);
+        }
+    }
+
+
     public void setBlackNickname(String nickname) {
         if (nickname != null && !nickname.trim().isEmpty()) {
             this.blackNickname = nickname.trim();
-            // 这里后续可以在控制面板显示黑方昵称
+            controlPanel.setNicknames(blackNickname, redNickname);
         }
     }
 
@@ -74,6 +89,7 @@ public class GameFrame extends JFrame {
             boolean deleted = saveManager.deleteSaveFile(username);
         }
     }
+
     private void initializeGame() {
         // 登录用户且有存档：询问是否加载存档
         if (isLoggedIn && saveManager.hasSaveFile(username)) {
@@ -110,7 +126,7 @@ public class GameFrame extends JFrame {
                 model.setPieces(pieces);
                 model.setRedTurn(isRedTurn);
                 boardPanel = new ChessBoardPanel(model, this);
-
+                controlPanel.setNicknames(blackNickname,redNickname);
                 JOptionPane.showMessageDialog(this, "存档加载成功！");
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "存档加载失败，开始新游戏");
@@ -199,8 +215,15 @@ public class GameFrame extends JFrame {
     }
 
     private void undoMove() {
-        // 悔棋功能(未实现)
-        JOptionPane.showMessageDialog(this, "悔棋功能待实现");
+        int choice = JOptionPane.showConfirmDialog(this, "是否悔棋？", "悔棋",
+                JOptionPane.YES_NO_OPTION);
+
+        if (choice == JOptionPane.YES_OPTION) {
+            if(!model.Withdraw()){
+                JOptionPane.showMessageDialog(this, "仅能悔棋一步！","悔棋",JOptionPane.WARNING_MESSAGE);
+            }
+            boardPanel.repaint();
+        }
     }
 
     //开关音乐

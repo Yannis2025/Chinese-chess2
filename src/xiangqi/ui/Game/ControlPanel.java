@@ -11,7 +11,8 @@ public class ControlPanel extends JPanel {
     private JButton musicButton;     // 音乐开关按钮 (turnon.png/turnoff.png)
     private JButton newGameButton;   // 新局按钮 (new.jpg)
     private boolean musicOn = true;
-
+    private JLabel blackNicknameLabel;
+    private JLabel redNicknameLabel;
     public ControlPanel() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setPreferredSize(new Dimension(158, 900)); // 和棋盘等高（900像素）
@@ -19,8 +20,19 @@ public class ControlPanel extends JPanel {
         initComponents();
         setupLayout();
     }
-
+    // 设置昵称
+    public void setNicknames(String blackNickname, String redNickname) {
+        if (blackNickname != null && !blackNickname.trim().isEmpty()) {
+            blackNicknameLabel.setText(blackNickname.trim());
+        }
+        if (redNickname != null && !redNickname.trim().isEmpty()) {
+            redNicknameLabel.setText(redNickname.trim());
+        }
+    }
     private void initComponents() {
+        blackNicknameLabel = new JLabel("黑方");
+        redNicknameLabel = new JLabel("红方");
+
         //悔棋按钮
         try {
             ImageIcon undoIcon = new ImageIcon("src/resources/Button/back.jpg");
@@ -56,6 +68,7 @@ public class ControlPanel extends JPanel {
 
         // 设置统一的按钮样式
         styleButtons();
+        styleNicknameLabels();
     }
 
     private void styleButtons() {
@@ -75,6 +88,20 @@ public class ControlPanel extends JPanel {
         newGameButton.setAlignmentX(Component.CENTER_ALIGNMENT);
     }
 
+    private void styleNicknameLabels() {
+        blackNicknameLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        blackNicknameLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        blackNicknameLabel.setFont(new Font("楷体", Font.BOLD, 19));
+        blackNicknameLabel.setForeground(Color.BLACK);
+        blackNicknameLabel.setMaximumSize(new Dimension(140, 30));
+
+        redNicknameLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        redNicknameLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        redNicknameLabel.setFont(new Font("楷体", Font.BOLD, 19));
+        redNicknameLabel.setForeground(new Color(200, 0, 0));
+        redNicknameLabel.setMaximumSize(new Dimension(140, 30));
+    }
+
     private void setupLayout() {
         // 添加顶部留白
         add(Box.createVerticalStrut(35));
@@ -88,8 +115,11 @@ public class ControlPanel extends JPanel {
         blackavatarframe.setAlignmentX(Component.CENTER_ALIGNMENT);
         add(blackpanel);
 
-        add(Box.createVerticalStrut(170));
+        // 添加黑方标签（在blackpanel下方）
+        add(Box.createVerticalStrut(5));
+        add(blackNicknameLabel);
 
+        add(Box.createVerticalStrut(140));
         // 添加悔棋按钮
         add(undoButton);
         add(Box.createVerticalStrut(50));
@@ -102,8 +132,9 @@ public class ControlPanel extends JPanel {
         add(newGameButton);
         add(Box.createVerticalStrut(100));
 
-        // 添加底部弹性空间
-        //add(Box.createVerticalGlue());
+        add(Box.createVerticalStrut(40));
+
+
 
         JPanel redpanel = new JPanel();
         redpanel.setLayout(new OverlayLayout(redpanel));
@@ -114,7 +145,8 @@ public class ControlPanel extends JPanel {
         redavatarframe.setAlignmentX(Component.CENTER_ALIGNMENT);
         add(redpanel);
 
-        add(Box.createVerticalStrut(100));
+        // 添加红方标签
+        add(redNicknameLabel);
 
     }
 
