@@ -29,6 +29,7 @@ public class ControlPanel extends JPanel {
             redNicknameLabel.setText(redNickname.trim());
         }
     }
+
     private void initComponents() {
         blackNicknameLabel = new JLabel("黑方");
         redNicknameLabel = new JLabel("红方");
@@ -189,10 +190,12 @@ public class ControlPanel extends JPanel {
     public boolean isMusicOn() {
         return musicOn;
     }
+
     private Icon redavatarframe =new Icon("src/resources/Icon/红色头像框",140,140,1);
     private Icon blackavatarframe =new Icon("src/resources/Icon/黑色头像框",140,140,1);
     private Icon redavatar =new Icon("src/resources/Icon/红",120,120,4);
     private Icon blackavatar =new Icon("src/resources/Icon/黑",120,120,4);
+
     class Icon extends JLabel{
         int count =0;
         int sort ;
@@ -211,6 +214,7 @@ public class ControlPanel extends JPanel {
             });
         }
     }
+
     private ImageIcon PressImage(ImageIcon originalimage,int width,int height){
         Image resetimage = originalimage.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
         ImageIcon result = new ImageIcon(resetimage);

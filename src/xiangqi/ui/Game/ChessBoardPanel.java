@@ -13,6 +13,7 @@ public class ChessBoardPanel extends JPanel {
     private ChessBoardModel model;
     private final GameFrame gameFrame;
     private SoundManager soundManager;
+    private Winpopup winPopup;
 
     private static final int BOARD_WIDTH = 800;
     private static final int BOARD_HEIGHT = 900;
@@ -40,8 +41,10 @@ public class ChessBoardPanel extends JPanel {
     }
 
     private void handleMouseClick(int x, int y) {
-        if (gameEnded)
+        if (gameEnded){
+            restartGame();
             return;
+        }
 
         int col = Math.round((float)(x - MARGIN_X) / CELL_SIZE);
         int row = Math.round((float)(y - MARGIN_Y) / CELL_SIZE);
@@ -69,11 +72,9 @@ public class ChessBoardPanel extends JPanel {
             }
             selectedPiece = null;
         }
-        int winCondition = model.winCondition();
         if(model.winCondition() == 1){
             gameEnded=true;
-            Winpopup win = new Winpopup("红方胜利1",model,this);
-            add(win);
+            showWinPopup("红方胜利");
             soundManager.stopBackgroundMusic();  // 停止背景音乐
             soundManager.playSound("win");
             gameFrame.deleteSaveFile();
@@ -81,8 +82,7 @@ public class ChessBoardPanel extends JPanel {
         }
         if(model.winCondition() == -1){
             gameEnded=true;
-            Winpopup win = new Winpopup("黑方胜利1",model,this);
-            add(win);
+            showWinPopup("黑方胜利");
             soundManager.stopBackgroundMusic();  // 停止背景音乐
             soundManager.playSound("win");
             gameFrame.deleteSaveFile();
@@ -91,16 +91,45 @@ public class ChessBoardPanel extends JPanel {
         if(model.check()==1){
             Promptpopup Check=new Promptpopup("红方将军1",621,413,1200);
             add(Check);
-            //+将军UI
         }
-        if(model.check()==-1){
+        else if(model.check()==-1){
             Promptpopup Check=new Promptpopup("黑方将军1",621,413,1200);
             add(Check);
-            //+将军UI
         }
         repaint();
     }
+    // 重新开始游戏
+    public void restartGame() {
+        gameEnded = false;
+        selectedPiece = null;
 
+        // 移除胜利弹窗
+        if (winPopup != null) {
+            remove(winPopup);
+            winPopup = null;
+        }
+
+        // 重新初始化棋盘
+        model.getPieces().clear();
+        model.initializePieces();
+
+        // 重新开始背景音乐
+        soundManager.playBackgroundMusic();
+
+        // 通知GameFrame游戏重新开始
+        gameFrame.setGameEnded(false);
+
+        repaint();
+    }
+
+    // 显示胜利弹窗
+    private void showWinPopup(String winner) {
+        winPopup = new Winpopup(winner + "1", model, this, gameFrame);
+        winPopup.setLocation((BOARD_WIDTH - winPopup.width) / 2,
+                (BOARD_HEIGHT - winPopup.height) / 2);
+        add(winPopup);
+        setComponentZOrder(winPopup, 0); // 放到最前面
+    }
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);

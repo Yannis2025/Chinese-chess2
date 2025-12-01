@@ -153,6 +153,7 @@ public class GameFrame extends JFrame {
         } else {
             boardPanel.setModel(model);
         }
+        gameEnded=false;
     }
 
     private void setupUI() {
@@ -194,10 +195,11 @@ public class GameFrame extends JFrame {
     }
 
     private void handleWindowClosing() {
-        //停止背景音乐
-        soundManager.stopBackgroundMusic();
+
         if (gameEnded){
             this.dispose();//直接关闭游戏
+            // 停止背景音乐
+            soundManager.stopBackgroundMusic();
             new xiangqi.ui.Login.LoginFrame().show();
             return;
         }
@@ -208,6 +210,7 @@ public class GameFrame extends JFrame {
 
             if (choice == JOptionPane.YES_OPTION) {
                 boolean saved = saveGame();
+                soundManager.stopBackgroundMusic();
                 if (saved) {
                     JOptionPane.showMessageDialog(this, "游戏已保存！");
                 } else {
@@ -218,6 +221,7 @@ public class GameFrame extends JFrame {
 
         // 关闭游戏，返回登录界面
         this.dispose();
+        soundManager.stopBackgroundMusic();
         new xiangqi.ui.Login.LoginFrame().show();
 
     }
@@ -243,8 +247,7 @@ public class GameFrame extends JFrame {
     private void newGame() {
         //若一方胜出,再点击newGame会直接开始新游戏
         if(gameEnded){
-            startNewGame();
-            boardPanel.repaint();
+            restartGame();
             return;
         }
         //中途点会先询问
@@ -253,6 +256,27 @@ public class GameFrame extends JFrame {
 
         if (choice == JOptionPane.YES_OPTION) {
             startNewGame();
+            boardPanel.repaint();
+        }
+    }
+
+    public void restartGame(){
+        // 重置游戏状态
+        gameEnded = false;
+
+        // 重新开始背景音乐
+        soundManager.playBackgroundMusic();
+
+        // 重新初始化棋盘
+        startNewGame();
+
+        // 确保棋盘面板也重置状态
+        if (boardPanel != null) {
+            boardPanel.setModel(model);
+        }
+
+        // 重新绘制界面
+        if (boardPanel != null) {
             boardPanel.repaint();
         }
     }
