@@ -3,6 +3,8 @@ package xiangqi.ui.Game;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class ControlPanel extends JPanel {
     private JButton undoButton;      // 悔棋按钮 (back.jpg)
@@ -12,7 +14,7 @@ public class ControlPanel extends JPanel {
 
     public ControlPanel() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        setPreferredSize(new Dimension(128, 900)); // 和棋盘等高（900像素）
+        setPreferredSize(new Dimension(158, 900)); // 和棋盘等高（900像素）
 
         initComponents();
         setupLayout();
@@ -75,7 +77,18 @@ public class ControlPanel extends JPanel {
 
     private void setupLayout() {
         // 添加顶部留白
-        add(Box.createVerticalStrut(300));
+        add(Box.createVerticalStrut(35));
+
+        JPanel blackpanel = new JPanel();
+        blackpanel.setLayout(new OverlayLayout(blackpanel));
+        blackpanel.setOpaque(false);
+        blackpanel.add(blackavatar);
+        blackavatar.setAlignmentX(Component.CENTER_ALIGNMENT);
+        blackpanel.add(blackavatarframe);
+        blackavatarframe.setAlignmentX(Component.CENTER_ALIGNMENT);
+        add(blackpanel);
+
+        add(Box.createVerticalStrut(170));
 
         // 添加悔棋按钮
         add(undoButton);
@@ -87,9 +100,22 @@ public class ControlPanel extends JPanel {
 
         // 添加新局按钮
         add(newGameButton);
+        add(Box.createVerticalStrut(100));
 
         // 添加底部弹性空间
-        add(Box.createVerticalGlue());
+        //add(Box.createVerticalGlue());
+
+        JPanel redpanel = new JPanel();
+        redpanel.setLayout(new OverlayLayout(redpanel));
+        redpanel.setOpaque(false);
+        redpanel.add(redavatar);
+        redavatar.setAlignmentX(Component.CENTER_ALIGNMENT);
+        redpanel.add(redavatarframe);
+        redavatarframe.setAlignmentX(Component.CENTER_ALIGNMENT);
+        add(redpanel);
+
+        add(Box.createVerticalStrut(100));
+
     }
 
     @Override
@@ -97,7 +123,7 @@ public class ControlPanel extends JPanel {
         super.paintComponent(g);
         // 绘制ControlPanel.jpg作为背景，缩放到合适高度
         Image controlPanelBg = Toolkit.getDefaultToolkit().getImage("src/resources/Background/ControlPanel.png");
-        g.drawImage(controlPanelBg, 0, 0, 128, 900, this);
+        g.drawImage(controlPanelBg, 0, 0, 158, 900, this);
     }
 
     // 增加监听器
@@ -130,5 +156,32 @@ public class ControlPanel extends JPanel {
 
     public boolean isMusicOn() {
         return musicOn;
+    }
+    private Icon redavatarframe =new Icon("src/resources/Icon/红色头像框",140,140,1);
+    private Icon blackavatarframe =new Icon("src/resources/Icon/黑色头像框",140,140,1);
+    private Icon redavatar =new Icon("src/resources/Icon/红",120,120,4);
+    private Icon blackavatar =new Icon("src/resources/Icon/黑",120,120,4);
+    class Icon extends JLabel{
+        int count =0;
+        int sort ;
+        ImageIcon image=null;
+        Icon(String address,int width,int height,int sort){
+            image = new ImageIcon(address + (count % sort + 1) + ".png");
+            this.setIcon(PressImage(image,width,height));
+            this.setSize(width,height);
+            addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    count++;
+                    image=new ImageIcon(address + (count % sort + 1) + ".png");
+                    Icon.this.setIcon(PressImage(image,width,height));
+                }
+            });
+        }
+    }
+    private ImageIcon PressImage(ImageIcon originalimage,int width,int height){
+        Image resetimage = originalimage.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
+        ImageIcon result = new ImageIcon(resetimage);
+        return result;
     }
 }

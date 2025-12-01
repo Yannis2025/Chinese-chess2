@@ -11,7 +11,10 @@ public class ChessBoardModel implements Serializable {
     private static final int ROWS = 10;
     private static final int COLS = 9;
     private boolean isRedTurn = true; // 红方先行
-
+    private AbstractPiece lastpiece;
+    private AbstractPiece killedPiece;
+    private int withdrawRow;
+    private int withdrawCol;
     public ChessBoardModel() {
         pieces = new ArrayList<>();
         initializePieces();
@@ -27,7 +30,7 @@ public class ChessBoardModel implements Serializable {
     public void setPieces(List<AbstractPiece> pieces) {
         this.pieces = new ArrayList<>(pieces);
     }
-    private void initializePieces() {
+    public void initializePieces() {
         // 黑方棋子
         pieces.add(new GeneralPiece("黑将", 0, 4, false));
         pieces.add(new AdvisorPiece("黑士", 0, 5, false));
@@ -102,49 +105,100 @@ public class ChessBoardModel implements Serializable {
             if(getPieceAt(newRow,newCol).isRed()==piece.isRed()){
                 return false;//有棋子且同色则无法移动
             }else {
+                killedPiece=getPieceAt(newRow,newCol);
                 pieces.remove(getPieceAt(newRow,newCol));//有棋子且异色则吃子
             }
+        }else {
+            killedPiece=null;
         }
         lastColor = piece.isRed();
+        withdrawCol=piece.getCol();
+        withdrawRow= piece.getRow();
+        lastpiece=piece;
         piece.moveTo(newRow, newCol);
         return true;
     }
 
     public int winCondition (){
         int result = 0;
-        AbstractPiece RedGeneralPiece = null;
-        AbstractPiece BlackGeneralPiece = null;
         for (AbstractPiece piece:pieces) {
             if (piece instanceof GeneralPiece){
                 if(piece.isRed()){
-                    RedGeneralPiece = piece;
                     result++;
                 }else{
-                    BlackGeneralPiece = piece;
                     result--;
                 }
             }
         }
-//        if(result == 0){//=0时必然没有空指针
-//            if (RedGeneralPiece.getCol()==BlackGeneralPiece.getCol()){
-//                int Col = RedGeneralPiece.getCol();
-//                if(lastColor){
-//                    result--;//上一个颜色是红，下完黑方胜
-//                }else {
-//                    result++;//上一个颜色是黑。下完红方胜
-//                }
-//                for (int i = 0; i < 10; i++) {
-//                    if (!(getPieceAt(i, Col) instanceof GeneralPiece) && !(Objects.equals(null, getPieceAt(i, Col)))) {
-//                        result = 0;//如果同列上有一个非将棋子就继续游戏
-//                        break;
-//                    }
-//                }
-//            }
-//        }
         return result;//1为红赢，-1为黑赢，0为继续
     }
 
+    public boolean Withdraw(){
+        if(Objects.equals(lastpiece,null)){
+            return false;
+        }
+        for(AbstractPiece piece : pieces){
+            if (piece.equals(lastpiece)){
+                piece.setRow(withdrawRow);
+                piece.setCol(withdrawCol);
+                lastColor=!lastColor;
+            }
+        }
+        if(!Objects.equals(null,killedPiece)){
+            pieces.add(killedPiece);
+        }
+        lastpiece=null;
+        return true;
+    }
 
+    public int check(){
+        AbstractPiece blackgeneralpiece=null;
+        AbstractPiece redgeneralpiece=null;
+        for(AbstractPiece piece:pieces){
+            if(piece.isRed()&&piece instanceof GeneralPiece){
+                redgeneralpiece=piece;
+            }
+        }
+        for(AbstractPiece piece:pieces){
+            if(!piece.isRed()&&piece instanceof GeneralPiece){
+                blackgeneralpiece=piece;
+            }
+        }
+        if(!Objects.equals(blackgeneralpiece,null)&&!Objects.equals(redgeneralpiece,null)) {
+            for (AbstractPiece piece : pieces) {
+                if (piece.isRed()) {
+                    if (assumemovPiece(piece, blackgeneralpiece.getRow(), blackgeneralpiece.getCol())) {
+                        return 1;//红方将军
+                    }
+                }
+                if (!piece.isRed()) {
+                    if (assumemovPiece(piece, redgeneralpiece.getRow(), redgeneralpiece.getCol())) {
+                        return -1;//黑方将军
+                    }
+                }
+
+            }
+        }
+        return 0;//继续游戏
+    }
+
+    public boolean assumemovPiece(AbstractPiece piece, int newRow, int newCol){
+        if (!isValidPosition(newRow, newCol)) {
+            return false;
+        }//检测移动位置是否合法
+        if (newCol==piece.getCol()&&newRow==piece.getRow()){
+            return false;
+        }//检测是否同格位移，若同格位移则不计算移动
+        if(!piece.canMoveTo(newRow,newCol,this)){
+            return false;
+        }//检测移动是否符合棋子规则
+        if(!Objects.equals(null,getPieceAt(newRow,newCol))){//检测移动位置是否有棋子
+            if(getPieceAt(newRow,newCol).isRed()==piece.isRed()){
+                return false;//有棋子且同色则无法移动
+            }
+        }
+        return true;
+    }
 
     public static int getRows() {
         return ROWS;

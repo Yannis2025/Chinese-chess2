@@ -72,8 +72,8 @@ public class ChessBoardPanel extends JPanel {
         int winCondition = model.winCondition();
         if(model.winCondition() == 1){
             gameEnded=true;
-            setVisible(false);
-            //差红方胜利ui
+            Winpopup win = new Winpopup("红方胜利1",model,this);
+            add(win);
             soundManager.stopBackgroundMusic();  // 停止背景音乐
             soundManager.playSound("win");
             gameFrame.deleteSaveFile();
@@ -81,14 +81,23 @@ public class ChessBoardPanel extends JPanel {
         }
         if(model.winCondition() == -1){
             gameEnded=true;
-            setVisible(false);
-            //差黑方胜利ui
+            Winpopup win = new Winpopup("黑方胜利1",model,this);
+            add(win);
             soundManager.stopBackgroundMusic();  // 停止背景音乐
             soundManager.playSound("win");
             gameFrame.deleteSaveFile();
             gameFrame.setGameEnded(true);
         }
-
+        if(model.check()==1){
+            Promptpopup Check=new Promptpopup("红方将军1",621,413,1200);
+            add(Check);
+            //+将军UI
+        }
+        if(model.check()==-1){
+            Promptpopup Check=new Promptpopup("黑方将军1",621,413,1200);
+            add(Check);
+            //+将军UI
+        }
         repaint();
     }
 

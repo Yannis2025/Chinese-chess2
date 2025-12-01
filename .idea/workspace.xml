@@ -5,15 +5,34 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fa5716f5-5836-4edf-9801-7c42cf73b7bd" name="更改" comment="">
+      <change afterPath="$PROJECT_DIR$/src/resources/Icon/红1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/Icon/红2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/Icon/红3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/Icon/红4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/Icon/红色头像框1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/Icon/黑1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/Icon/黑2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/Icon/黑3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/Icon/黑4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/Icon/黑色头像框1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/Popup/吃子 (1).png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/Popup/红方将军1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/Popup/红方将军2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/Popup/红方胜利1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/Popup/红方胜利2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/Popup/黑方将军1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/Popup/黑方将军2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/Popup/黑方胜利1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/Popup/黑方胜利2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/xiangqi/ui/Game/Promptpopup.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/xiangqi/ui/Game/Winpopup.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserInformation" beforeDir="false" afterPath="$PROJECT_DIR$/UserInformation" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Chinese-chess2/xiangqi/ui/Login/LoginFrame.jfd" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Chinese-chess2/xiangqi/ui/Login/LoginFrame.jfd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/xiangqi/model/SaveManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/xiangqi/model/SaveManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Chinese-chess2/xiangqi/model/ChessBoardModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Chinese-chess2/xiangqi/model/ChessBoardModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Chinese-chess2/xiangqi/ui/Game/ChessBoardPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Chinese-chess2/xiangqi/ui/Game/ChessBoardPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Chinese-chess2/xiangqi/ui/Game/ControlPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Chinese-chess2/xiangqi/ui/Game/ControlPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/xiangqi/model/ChessBoardModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/xiangqi/model/ChessBoardModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/xiangqi/ui/Game/ChessBoardPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/xiangqi/ui/Game/ChessBoardPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/xiangqi/ui/Game/GameFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/xiangqi/ui/Game/GameFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/xiangqi/ui/Login/LoginFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/xiangqi/ui/Login/LoginFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/xiangqi/ui/Login/LoginFrame.jfd" beforeDir="false" afterPath="$PROJECT_DIR$/src/xiangqi/ui/Login/LoginFrame.jfd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/xiangqi/ui/Login/UserIDFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/xiangqi/ui/Login/UserIDFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/xiangqi/ui/Game/ControlPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/xiangqi/ui/Game/ControlPanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,11 +90,11 @@
       <recent name="D:\计算机\Chinese-chess" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\计算机\Chinese-chess\src\Icon" />
+      <recent name="D:\计算机\Chinese-chess\src\resources\Popup" />
       <recent name="D:\计算机\Chinese-chess\src\resources\Sounds" />
       <recent name="D:\计算机\Chinese-chess\src\Sounds" />
       <recent name="D:\计算机\Chinese-chess\src\resources\Background" />
-      <recent name="D:\计算机\Chinese-chess\src\resources" />
-      <recent name="D:\计算机\Chinese-chess\src\resources\Button" />
     </key>
   </component>
   <component name="TaskManager">
@@ -109,6 +128,33 @@
             <option name="WATCH_EXIT" value="false" />
           </properties>
           <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/xiangqi/ui/Game/ChessBoardPanel.java</url>
+          <line>113</line>
+          <properties class="xiangqi.ui.Game.ChessBoardPanel" method="drawBoard">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/xiangqi/ui/Game/ControlPanel.java</url>
+          <line>22</line>
+          <properties class="xiangqi.ui.Game.ControlPanel" method="initComponents">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/xiangqi/ui/Game/ControlPanel.java</url>
+          <line>137</line>
+          <properties class="xiangqi.ui.Game.ControlPanel" method="setNewGameListener">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
