@@ -5,10 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fa5716f5-5836-4edf-9801-7c42cf73b7bd" name="更改" comment="">
+      <change afterPath="$PROJECT_DIR$/src/xiangqi/ui/Login/UserIDFrame.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/xiangqi/ui/Login/UserIDFrame.jfd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Chinese-chess2/resources/Sounds/eat.wav" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Chinese-chess2/resources/Sounds/eat.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Chinese-chess2/resources/Sounds/move.wav" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Chinese-chess2/resources/Sounds/move.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/xiangqi/test/OpenGameFrame.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/xiangqi/ui/Game/GameFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/xiangqi/ui/Game/GameFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/xiangqi/ui/Login/LoginFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/xiangqi/ui/Login/LoginFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/xiangqi/ui/Login/LoginFrame.jfd" beforeDir="false" afterPath="$PROJECT_DIR$/src/xiangqi/ui/Login/LoginFrame.jfd" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,6 +98,20 @@
           <url>file://$PROJECT_DIR$/src/xiangqi/ui/Game/ChessBoardPanel.java</url>
           <line>80</line>
           <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/xiangqi/ui/Login/UserIDFrame.java</url>
+          <line>240</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/xiangqi/ui/Login/UserIDFrame.java</url>
+          <line>151</line>
+          <properties class="xiangqi.ui.Login.UserIDFrame" method="validateInput">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

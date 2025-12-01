@@ -21,6 +21,8 @@ public class GameFrame extends JFrame {
     private String username;
     private boolean gameEnded = false;
     private SoundManager soundManager;
+    private String redNickname = "红方";
+    private String blackNickname = "黑方";
 
     public GameFrame(String title, boolean isLoggedIn, String username) {
         super(title);
@@ -37,6 +39,19 @@ public class GameFrame extends JFrame {
 
         //播放背景音乐:
         soundManager.playBackgroundMusic();
+    }
+    // 新增：设置昵称的方法
+    public void setRedNickname(String nickname) {
+        if (nickname != null && !nickname.trim().isEmpty()) {
+            this.redNickname = nickname.trim();
+            // 这里后续可以在控制面板显示红方昵称
+        }
+    }
+    public void setBlackNickname(String nickname) {
+        if (nickname != null && !nickname.trim().isEmpty()) {
+            this.blackNickname = nickname.trim();
+            // 这里后续可以在控制面板显示黑方昵称
+        }
     }
 
     private void initializeGame() {

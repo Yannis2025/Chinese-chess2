@@ -28,9 +28,10 @@ public class LoginFrame  {
     //打开象棋界面
     private void openChessBoard(boolean isLoggedIn, String username){
         loginFrame.dispose();//关闭当前登录界面
+        //先打开UserIDFrame
         SwingUtilities.invokeLater(() -> {
-            GameFrame frame = new GameFrame("中国象棋", isLoggedIn, username);
-            frame.setVisible(true);//加按钮直接在这里调，不需要动ChessBoardPanel
+            UserIDFrame userIDFrame = new UserIDFrame(isLoggedIn, username);
+            userIDFrame.showFrame();
         });
 
     }
@@ -97,15 +98,15 @@ public class LoginFrame  {
 
             //---- UsernameLabel ----
             UsernameLabel.setText("Username:");
-            UsernameLabel.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 14));
+            UsernameLabel.setFont(new Font("Segoe Print", Font.PLAIN, 14));
             loginFrameContentPane.add(UsernameLabel);
             UsernameLabel.setBounds(95, 90, UsernameLabel.getPreferredSize().width, 22);
 
             //---- PasswordLabel ----
             PasswordLabel.setText("Password:");
-            PasswordLabel.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 14));
+            PasswordLabel.setFont(new Font("Segoe Print", Font.PLAIN, 14));
             loginFrameContentPane.add(PasswordLabel);
-            PasswordLabel.setBounds(new Rectangle(new Point(100, 135), PasswordLabel.getPreferredSize()));
+            PasswordLabel.setBounds(new Rectangle(new Point(100, 140), PasswordLabel.getPreferredSize()));
 
             //---- TitleLabel ----
             TitleLabel.setText("The Chinese Chess Login System");
@@ -115,24 +116,27 @@ public class LoginFrame  {
 
             //---- RegisterButton ----
             RegisterButton.setText("Register");
+            RegisterButton.setFont(new Font("Segoe Print", Font.PLAIN, 12));
             loginFrameContentPane.add(RegisterButton);
             RegisterButton.setBounds(new Rectangle(new Point(130, 185), RegisterButton.getPreferredSize()));
 
             //---- LoginButton ----
             LoginButton.setText("Login");
+            LoginButton.setFont(new Font("Segoe Print", Font.PLAIN, 12));
             loginFrameContentPane.add(LoginButton);
             LoginButton.setBounds(260, 185, 80, LoginButton.getPreferredSize().height);
             loginFrameContentPane.add(PasswordField);
             PasswordField.setBounds(190, 140, 175, PasswordField.getPreferredSize().height);
             loginFrameContentPane.add(UsernameField);
-            UsernameField.setBounds(190, 95, 175, UsernameField.getPreferredSize().height);
+            UsernameField.setBounds(190, 90, 175, UsernameField.getPreferredSize().height);
 
             //---- GuestLoginButton ----
             GuestLoginButton.setText("Guest Login");
+            GuestLoginButton.setFont(new Font("Segoe Print", Font.PLAIN, 12));
             loginFrameContentPane.add(GuestLoginButton);
-            GuestLoginButton.setBounds(165, 230, 135, 25);
+            GuestLoginButton.setBounds(165, 245, 135, 25);
 
-            loginFrameContentPane.setPreferredSize(new Dimension(475, 300));
+            loginFrameContentPane.setPreferredSize(new Dimension(475, 325));
             loginFrame.pack();
             loginFrame.setLocationRelativeTo(loginFrame.getOwner());
         }
