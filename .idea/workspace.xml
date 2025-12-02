@@ -5,17 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fa5716f5-5836-4edf-9801-7c42cf73b7bd" name="更改" comment="">
+      <change afterPath="$PROJECT_DIR$/src/xiangqi/OpenChessFrame.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/xiangqi/ui/Login/ModeFrame.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/xiangqi/ui/Login/ModeFrame.jfd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Chinese-chess2/xiangqi/model/ChessBoardModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Chinese-chess2/xiangqi/model/ChessBoardModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Chinese-chess2/xiangqi/model/GeneralPiece.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Chinese-chess2/xiangqi/model/GeneralPiece.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Chinese-chess2/xiangqi/ui/Game/ChessBoardPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Chinese-chess2/xiangqi/ui/Game/ChessBoardPanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Chinese-chess2/xiangqi/ui/Game/ControlPanel$Icon$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Chinese-chess2/xiangqi/ui/Game/ControlPanel$Icon$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Chinese-chess2/xiangqi/ui/Game/ControlPanel$Icon.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Chinese-chess2/xiangqi/ui/Game/ControlPanel$Icon.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Chinese-chess2/xiangqi/ui/Game/ControlPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Chinese-chess2/xiangqi/ui/Game/ControlPanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/saves/syy.save" beforeDir="false" afterPath="$PROJECT_DIR$/saves/syy.save" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/xiangqi/model/ChessBoardModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/xiangqi/model/ChessBoardModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/xiangqi/model/GeneralPiece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/xiangqi/model/GeneralPiece.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/xiangqi/ui/Game/ChessBoardPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/xiangqi/ui/Game/ChessBoardPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/xiangqi/ui/Game/ControlPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/xiangqi/ui/Game/ControlPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/xiangqi/ui/Game/GameFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/xiangqi/ui/Game/GameFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/xiangqi/ui/Game/Winpopup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/xiangqi/ui/Game/Winpopup.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/xiangqi/ui/Login/UserIDFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/xiangqi/ui/Login/UserIDFrame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,18 +107,14 @@
           <line>14</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/xiangqi/ui/Login/UserIDFrame.java</url>
-          <line>82</line>
-          <properties class="xiangqi.ui.Login.UserIDFrame" method="validateInput">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="6" />
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/xiangqi/ui/Game/ChessBoardPanel.java</url>
+          <line>28</line>
+          <option name="timeStamp" value="15" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/xiangqi/ui/Game/ChessBoardPanel.java</url>
-          <line>142</line>
+          <line>141</line>
           <properties class="xiangqi.ui.Game.ChessBoardPanel" method="drawBoard">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />

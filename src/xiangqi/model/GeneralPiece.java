@@ -11,20 +11,29 @@ public class GeneralPiece extends AbstractPiece {
     }
     int CurrentRow=getRow();
     int CurrentCol=getCol();
+    public boolean Kingsmeet = false;
 
     @Override
     public boolean canMoveTo(int targetRow, int targetCol, ChessBoardModel model) {
-        boolean Kingsmeet = true;
-
+        boolean kinginline = false;
+        int kingRow=0;
         for (int i = 0; i < 10; i++) {
-            if (!(model.getPieceAt(i, CurrentCol) instanceof GeneralPiece) && !(Objects.equals(null, model.getPieceAt(i, CurrentCol)))) {
-                Kingsmeet = false;//如果同列上有一个非将棋子就继续游戏
-                break;
+            if(model.getPieceAt(i, targetCol) instanceof  GeneralPiece){
+                kinginline=true;
+                kingRow=i;
+            }
+        }
+        if(kinginline) {
+            Kingsmeet=true;
+            for (int i = Math.min(kingRow,targetRow); i <Math.max(kingRow,targetRow) ; i++) {
+                if(!Objects.equals(null,model.getPieceAt(i,targetCol))&&!(model.getPieceAt(i,targetCol) instanceof GeneralPiece)){
+                    Kingsmeet =false;
+                }
             }
         }
 
-        if (Kingsmeet && model.getPieceAt(targetRow, targetCol) instanceof GeneralPiece) {
-            return true;
+        if (Kingsmeet) {
+            return false;
         }
 
         if (Math.abs(CurrentRow - targetRow) + Math.abs(CurrentCol - targetCol) != 1) {

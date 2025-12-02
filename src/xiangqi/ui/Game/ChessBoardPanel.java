@@ -57,10 +57,10 @@ public class ChessBoardPanel extends JPanel {
             selectedPiece = model.getPieceAt(row, col);
         } else {
             //记录移动前是否有棋子被吃
-            AbstractPiece targetPiece=model.getPieceAt(row,col);
-            boolean isEat = targetPiece!=null&&targetPiece.isRed()!=selectedPiece.isRed();
+            AbstractPiece targetPiece = model.getPieceAt(row, col);
+            boolean isEat = targetPiece != null && targetPiece.isRed() != selectedPiece.isRed();
             //移动棋子
-            boolean moveSuccess=model.movePiece(selectedPiece, row, col);
+            boolean moveSuccess = model.movePiece(selectedPiece, row, col);
 
             if (moveSuccess) {
                 // 播放音效：吃子优先于移动
@@ -69,32 +69,31 @@ public class ChessBoardPanel extends JPanel {
                 } else {
                     soundManager.playSound("move");
                 }
+                if (model.winCondition() == 1) {
+                    gameEnded = true;
+                    showWinPopup("红方胜利");
+                    soundManager.stopBackgroundMusic();  // 停止背景音乐
+                    soundManager.playSound("win");
+                    gameFrame.deleteSaveFile();
+                    gameFrame.setGameEnded(true);
+                }
+                if (model.winCondition() == -1) {
+                    gameEnded = true;
+                    showWinPopup("黑方胜利");
+                    soundManager.stopBackgroundMusic();  // 停止背景音乐
+                    soundManager.playSound("win");
+                    gameFrame.deleteSaveFile();
+                    gameFrame.setGameEnded(true);
+                }
+                if (model.check() == 1) {
+                    Promptpopup Check = new Promptpopup("红方将军1", 621, 413, 1200);
+                    add(Check);
+                } else if (model.check() == -1) {
+                    Promptpopup Check = new Promptpopup("黑方将军1", 621, 413, 1200);
+                    add(Check);
+                }
             }
             selectedPiece = null;
-        }
-        if(model.winCondition() == 1){
-            gameEnded=true;
-            showWinPopup("红方胜利");
-            soundManager.stopBackgroundMusic();  // 停止背景音乐
-            soundManager.playSound("win");
-            gameFrame.deleteSaveFile();
-            gameFrame.setGameEnded(true);
-        }
-        if(model.winCondition() == -1){
-            gameEnded=true;
-            showWinPopup("黑方胜利");
-            soundManager.stopBackgroundMusic();  // 停止背景音乐
-            soundManager.playSound("win");
-            gameFrame.deleteSaveFile();
-            gameFrame.setGameEnded(true);
-        }
-        if(model.check()==1){
-            Promptpopup Check=new Promptpopup("红方将军1",621,413,1200);
-            add(Check);
-        }
-        else if(model.check()==-1){
-            Promptpopup Check=new Promptpopup("黑方将军1",621,413,1200);
-            add(Check);
         }
         repaint();
     }

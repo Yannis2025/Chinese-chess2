@@ -8,11 +8,15 @@ import java.util.Objects;
 public class ChessBoardModel implements Serializable {
     // 储存棋盘上所有的棋子，要实现吃子的话，直接通过pieces.remove(被吃掉的棋子)删除就可以
     private List<AbstractPiece> pieces;
+    private List<AbstractPiece> redpieces=new ArrayList<AbstractPiece>();
+    private List<AbstractPiece> blackpieces=new ArrayList<AbstractPiece>();;
     private static final int ROWS = 10;
     private static final int COLS = 9;
     private boolean isRedTurn = true; // 红方先行
     private AbstractPiece lastpiece;
     private AbstractPiece killedPiece;
+    private AbstractPiece blackgeneralpiece;
+    private AbstractPiece redgeneralpiece;
     private int withdrawRow;
     private int withdrawCol;
     public ChessBoardModel() {
@@ -32,7 +36,7 @@ public class ChessBoardModel implements Serializable {
     }
     public void initializePieces() {
         // 黑方棋子
-        pieces.add(new GeneralPiece("黑将", 0, 4, false));
+        pieces.add(blackgeneralpiece=new GeneralPiece("黑将", 0, 4, false));
         pieces.add(new AdvisorPiece("黑士", 0, 5, false));
         pieces.add(new AdvisorPiece("黑士", 0, 3, false));
         pieces.add(new ElephantPiece("黑象", 0, 6, false));
@@ -48,9 +52,10 @@ public class ChessBoardModel implements Serializable {
         pieces.add(new SoldierPiece("黑卒", 3, 4, false));
         pieces.add(new SoldierPiece("黑卒", 3, 6, false));
         pieces.add(new SoldierPiece("黑卒", 3, 8, false));
+        blackpieces.addAll(pieces);
 
         // 红方棋子
-        pieces.add(new GeneralPiece("红帅", 9, 4, true));
+        pieces.add(redgeneralpiece=new GeneralPiece("红帅", 9, 4, true));
         pieces.add(new AdvisorPiece("红仕", 9, 5, true));
         pieces.add(new AdvisorPiece("红仕", 9, 3, true));
         pieces.add(new ElephantPiece("红相", 9, 6, true));
@@ -66,6 +71,10 @@ public class ChessBoardModel implements Serializable {
         pieces.add(new SoldierPiece("红兵", 6, 4, true));
         pieces.add(new SoldierPiece("红兵", 6, 6, true));
         pieces.add(new SoldierPiece("红兵", 6, 8, true));
+        redpieces.addAll(pieces);
+        redpieces.removeAll(blackpieces);
+        killedPiece=null;
+        lastpiece=null;
     }
 
     public List<AbstractPiece> getPieces() {
@@ -107,6 +116,11 @@ public class ChessBoardModel implements Serializable {
             }else {
                 killedPiece=getPieceAt(newRow,newCol);
                 pieces.remove(getPieceAt(newRow,newCol));//有棋子且异色则吃子
+                if(killedPiece.isRed()){
+                    redpieces.remove(killedPiece);
+                }else {
+                    blackpieces.remove(killedPiece);
+                }
             }
         }else {
             killedPiece=null;
@@ -146,43 +160,44 @@ public class ChessBoardModel implements Serializable {
         }
         if(!Objects.equals(null,killedPiece)){
             pieces.add(killedPiece);
+            if(killedPiece.isRed()){
+                redpieces.add(killedPiece);
+            }else{
+                blackpieces.add(killedPiece);
+            }
         }
         lastpiece=null;
         return true;
     }
 
     public int check(){
-        AbstractPiece blackgeneralpiece=null;
-        AbstractPiece redgeneralpiece=null;
-        for(AbstractPiece piece:pieces){
-            if(piece.isRed()&&piece instanceof GeneralPiece){
-                redgeneralpiece=piece;
-            }
-        }
-        for(AbstractPiece piece:pieces){
-            if(!piece.isRed()&&piece instanceof GeneralPiece){
-                blackgeneralpiece=piece;
-            }
-        }
-        if(!Objects.equals(blackgeneralpiece,null)&&!Objects.equals(redgeneralpiece,null)) {
-            for (AbstractPiece piece : pieces) {
-                if (piece.isRed()) {
-                    if (assumemovPiece(piece, blackgeneralpiece.getRow(), blackgeneralpiece.getCol())) {
-                        return 1;//红方将军
-                    }
+        if(lastColor){
+            for(AbstractPiece piece : redpieces) {
+                if (assumemove(piece, blackgeneralpiece.getRow(), blackgeneralpiece.getCol())) {
+                    return 1;
                 }
-                if (!piece.isRed()) {
-                    if (assumemovPiece(piece, redgeneralpiece.getRow(), redgeneralpiece.getCol())) {
-                        return -1;//黑方将军
-                    }
+            }
+            for (AbstractPiece piece : blackpieces){
+                if (assumemove(piece, redgeneralpiece.getRow(), redgeneralpiece.getCol())) {
+                    return -1;//黑方将军
                 }
-
+            }
+        }else{
+            for (AbstractPiece piece : blackpieces){
+                if (assumemove(piece, redgeneralpiece.getRow(), redgeneralpiece.getCol())) {
+                    return -1;//黑方将军
+                }
+            }
+            for(AbstractPiece piece : redpieces) {
+                if (assumemove(piece, blackgeneralpiece.getRow(), blackgeneralpiece.getCol())) {
+                    return 1;
+                }
             }
         }
         return 0;//继续游戏
     }
 
-    public boolean assumemovPiece(AbstractPiece piece, int newRow, int newCol){
+    public boolean assumemove(AbstractPiece piece, int newRow, int newCol){
         if (!isValidPosition(newRow, newCol)) {
             return false;
         }//检测移动位置是否合法
