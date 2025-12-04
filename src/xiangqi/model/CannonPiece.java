@@ -6,9 +6,9 @@ public class CannonPiece extends AbstractPiece{
     public CannonPiece(String name, int row, int col, boolean isRed) {
         super(name, row, col, isRed);
     }
-    int CurrentRow=getRow();
-    int CurrentCol=getCol();
     public boolean canMoveTo(int targetRow, int targetCol, ChessBoardModel model) {
+        int CurrentRow=getRow();
+        int CurrentCol=getCol();
         if(targetRow!=CurrentRow&&targetCol!=CurrentCol){
             return false;
         }
@@ -55,8 +55,6 @@ public class CannonPiece extends AbstractPiece{
                 if (!Objects.equals(model.getPieceAt(CurrentRow, i), null)) {//防止空指针
                     if (model.getPieceAt(CurrentRow, i).isRed() != this.isRed()) {
                         if (model.getPieceAt(CurrentRow, i).equals(selectedPiece)) {//当移动位置恰好是离边界棋子最近的异色棋子时，移动合法
-                            CurrentCol = targetCol;
-                            CurrentRow = targetRow;
                             return true;
                         }
                         break;
@@ -70,8 +68,6 @@ public class CannonPiece extends AbstractPiece{
                 if (!Objects.equals(model.getPieceAt(CurrentRow, i), null)) {
                     if (model.getPieceAt(CurrentRow, i).isRed() != this.isRed()) {
                         if (model.getPieceAt(CurrentRow, i).equals(selectedPiece)) {
-                            CurrentCol = targetCol;
-                            CurrentRow = targetRow;
                             return true;
                         }
                         break;
@@ -85,8 +81,6 @@ public class CannonPiece extends AbstractPiece{
                 if (!Objects.equals(model.getPieceAt(i, CurrentCol), null)) {
                     if (model.getPieceAt(i, CurrentCol).isRed() != this.isRed()) {
                         if (model.getPieceAt(i, CurrentCol).equals(selectedPiece)) {
-                            CurrentCol = targetCol;
-                            CurrentRow = targetRow;
                             return true;
                         }
                         break;
@@ -100,8 +94,6 @@ public class CannonPiece extends AbstractPiece{
                 if (!Objects.equals(model.getPieceAt(i, CurrentCol), null)) {
                     if (model.getPieceAt(i, CurrentCol).isRed() != this.isRed()) {
                         if (model.getPieceAt(i, CurrentCol).equals(selectedPiece)) {
-                            CurrentCol = targetCol;
-                            CurrentRow = targetRow;
                             return true;
                         }
                         break;
@@ -113,10 +105,6 @@ public class CannonPiece extends AbstractPiece{
         if(targetCol<MinCol||targetCol>MaxCol||targetRow<MinRow||targetRow>MaxRow){
             return false;
         }
-
-
-        CurrentCol = targetCol;
-        CurrentRow = targetRow;
         return true;
 
     }

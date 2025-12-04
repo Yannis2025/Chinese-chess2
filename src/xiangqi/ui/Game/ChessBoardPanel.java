@@ -88,9 +88,11 @@ public class ChessBoardPanel extends JPanel {
                 if (model.check() == 1) {
                     Promptpopup Check = new Promptpopup("红方将军1", 621, 413, 1200);
                     add(Check);
+                    soundManager.playSound("check");
                 } else if (model.check() == -1) {
                     Promptpopup Check = new Promptpopup("黑方将军1", 621, 413, 1200);
                     add(Check);
+                    soundManager.playSound("check");
                 }
             }
             selectedPiece = null;

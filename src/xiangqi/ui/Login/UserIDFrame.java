@@ -6,24 +6,39 @@ package xiangqi.ui.Login;
 
 import xiangqi.model.SaveManager;
 import xiangqi.ui.Game.GameFrame;
+import xiangqi.ui.Game.StartGameFrame;
+
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.*;
 
 /**
  * @author yanni
  */
 public class UserIDFrame extends JFrame {
+    private StartGameFrame startGameFrame;
     private String redID="";
     private String blackID="";
     private boolean isLoggedIn;
     private String username;
     private SaveManager saveManager;
 
-    public UserIDFrame(boolean isLoggedIn, String username) {
+    public UserIDFrame(boolean isLoggedIn, String username,StartGameFrame startGameFrame) {
+        this.startGameFrame=startGameFrame;
         this.isLoggedIn = isLoggedIn;
         this.username = username;
         this.saveManager = new SaveManager();
         initComponents();
+
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                dispose();
+                startGameFrame.closeLoginFrame();
+            }
+        });
 
         if (isLoggedIn && !username.equals("Guest") && saveManager.hasSaveFile(username)) {
             // 有存档，询问是否加载存档
@@ -43,22 +58,24 @@ public class UserIDFrame extends JFrame {
 
         // 无存档或用户选择不加载存档，显示昵称输入界面
         setupEventListeners();
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
         this.setLocationRelativeTo(null);
     }
 
     private void setupEventListeners() {
-        // 取消按钮,返回登录界面
+        // 取消按钮,返回开始界面
         CancelButton.addActionListener(e -> {
             this.dispose();
-            new LoginFrame().show();
+            startGameFrame.closeLoginFrame();
         });
 
         // 确认按钮,验证并进入游戏
         ConfirmButton.addActionListener(e -> {
             if (validateInput()) {
-                enterGame();
+                this.dispose();
+                if (startGameFrame != null) {
+                    startGameFrame.openGameFrame(isLoggedIn, username, redID, blackID);
+                }
             }
         });
 
@@ -67,7 +84,13 @@ public class UserIDFrame extends JFrame {
             // 使用默认昵称
             redID = "红方";
             blackID = "黑方";
-            enterGame();
+            // 关闭UserIDFrame
+            this.dispose();
+
+            // 通知开始界面打开游戏界面
+            if (startGameFrame != null) {
+                startGameFrame.openGameFrame(isLoggedIn, username, redID, blackID);
+            }
         });
 
         // 回车键也行
@@ -145,7 +168,7 @@ public class UserIDFrame extends JFrame {
     private void enterGame() {
         this.dispose();
         SwingUtilities.invokeLater(() -> {
-            GameFrame gameFrame = new GameFrame("中国象棋", isLoggedIn, username,redID,blackID);
+            GameFrame gameFrame = new GameFrame("中国象棋", isLoggedIn, username,redID,blackID,startGameFrame);
             gameFrame.setVisible(true);
         });
     }
@@ -154,7 +177,7 @@ public class UserIDFrame extends JFrame {
         this.dispose();
         SwingUtilities.invokeLater(() -> {
             // 有存档时，使用简化构造函数，昵称会在加载存档时获取
-            GameFrame gameFrame = new GameFrame("中国象棋", isLoggedIn, username);
+            GameFrame gameFrame = new GameFrame("中国象棋", isLoggedIn, username,startGameFrame);
             gameFrame.setVisible(true);
         });
     }

@@ -110,6 +110,32 @@ public class ChessBoardModel implements Serializable {
         if(!piece.canMoveTo(newRow,newCol,this)){
             return false;
         }//检测移动是否符合棋子规则
+        //王不见王有两种情况，第一种是同列上别的棋子移开导致王不见王，第二种是一方的将移到与另一方同列
+        if(redgeneralpiece.getCol()==blackgeneralpiece.getCol()&&piece.getCol()==redgeneralpiece.getCol()&&newCol!=piece.getCol()&&!(piece instanceof GeneralPiece)){
+            boolean nonchessExist=true;
+            for (int i = blackgeneralpiece.getRow()+1; i < redgeneralpiece.getRow(); i++) {
+                if(!Objects.equals(null,getPieceAt(i,redgeneralpiece.getCol()))){
+                    nonchessExist=false;//二王间有一个棋子则不构成非法移动
+                    break;
+                }
+            }
+            if(nonchessExist){
+                return false;
+            }
+        }//第一种情况,移动前二王同列&&移动棋子与其同列&&横向移动会导致二王可能相见
+        if((piece.equals(redgeneralpiece)&&newCol==blackgeneralpiece.getCol())||(piece.equals(blackgeneralpiece)&&newCol==redgeneralpiece.getCol())){
+            //第二种情况，移动棋子为王且新位置与剩下一王同列
+            boolean nonchessExist=true;
+            for (int i = blackgeneralpiece.getRow()+1; i < redgeneralpiece.getRow(); i++) {
+                if(!Objects.equals(null,getPieceAt(i,newCol))){
+                    nonchessExist=false;//二王间有一个棋子则不构成非法移动
+                    break;
+                }
+            }
+            if(nonchessExist){
+                return false;
+            }
+        }
         if(!Objects.equals(null,getPieceAt(newRow,newCol))){//检测移动位置是否有棋子
             if(getPieceAt(newRow,newCol).isRed()==piece.isRed()){
                 return false;//有棋子且同色则无法移动

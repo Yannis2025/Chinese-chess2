@@ -10,6 +10,7 @@ public class ControlPanel extends JPanel {
     private JButton undoButton;      // 悔棋按钮 (back.jpg)
     private JButton musicButton;     // 音乐开关按钮 (turnon.png/turnoff.png)
     private JButton newGameButton;   // 新局按钮 (new.jpg)
+    private JButton quitButton;
     private boolean musicOn = true;
     private JLabel blackNicknameLabel;
     private JLabel redNicknameLabel;
@@ -67,6 +68,19 @@ public class ControlPanel extends JPanel {
         newGameButton.setContentAreaFilled(false);
         newGameButton.setFocusPainted(false);
 
+        // 退出按钮
+        try {
+            ImageIcon quitIcon = new ImageIcon("src/resources/Button/quit.png");
+            Image quitImg = quitIcon.getImage();
+            Image scaledQuitImg = quitImg.getScaledInstance(100, 39, Image.SCALE_SMOOTH);//平滑缩放
+            ImageIcon scaledQuitIcon = new ImageIcon(scaledQuitImg);
+            quitButton = new JButton(scaledQuitIcon);
+        } catch (Exception e) {
+            quitButton = new JButton("退出");
+        }
+        quitButton.setBorderPainted(false);
+        quitButton.setContentAreaFilled(false);
+        quitButton.setFocusPainted(false);
         // 设置统一的按钮样式
         styleButtons();
         styleNicknameLabels();
@@ -83,10 +97,13 @@ public class ControlPanel extends JPanel {
         newGameButton.setPreferredSize(new Dimension(100, 39));
         newGameButton.setMaximumSize(new Dimension(100, 39));
 
+        quitButton.setPreferredSize(new Dimension(100, 39));
+        quitButton.setMaximumSize(new Dimension(100, 39));
         // 居中对齐
         undoButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         musicButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         newGameButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        quitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
     }
 
     private void styleNicknameLabels() {
@@ -131,8 +148,11 @@ public class ControlPanel extends JPanel {
 
         // 添加新局按钮
         add(newGameButton);
-        add(Box.createVerticalStrut(100));
+        add(Box.createVerticalStrut(50));
 
+        //添加退出按钮
+        add(quitButton);
+        add(Box.createVerticalStrut(50));
         add(Box.createVerticalStrut(40));
 
 
@@ -170,6 +190,10 @@ public class ControlPanel extends JPanel {
 
     public void setNewGameListener(ActionListener listener) {
         newGameButton.addActionListener(listener);
+    }
+
+    public void setQuitListener(ActionListener listener) {
+        quitButton.addActionListener(listener);
     }
 
     public void updateMusicButton(boolean isOn) {

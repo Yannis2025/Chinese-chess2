@@ -4,9 +4,9 @@ public class RookPiece extends AbstractPiece{
     public RookPiece(String name, int row, int col, boolean isRed) {
         super(name, row, col, isRed);
     }
-    int CurrentRow=getRow();
-    int CurrentCol=getCol();
     public boolean canMoveTo(int targetRow, int targetCol, ChessBoardModel model) {
+        int CurrentRow=getRow();
+        int CurrentCol=getCol();
         if(targetRow!=CurrentRow&&targetCol!=CurrentCol){
             return false;
         }
@@ -43,8 +43,6 @@ public class RookPiece extends AbstractPiece{
             return false;
         }//超出边界则非法
 
-        CurrentCol = targetCol;
-        CurrentRow = targetRow;
         return true;
 
     }

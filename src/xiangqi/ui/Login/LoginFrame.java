@@ -6,9 +6,12 @@ package xiangqi.ui.Login;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.*;
 
 import xiangqi.ui.Game.GameFrame;
+import xiangqi.ui.Game.StartGameFrame;
 import xiangqi.ui.register.validator;
 import xiangqi.ui.register.RegisterFrame;
 
@@ -16,12 +19,27 @@ import xiangqi.ui.register.RegisterFrame;
  * @author yanni
  */
 public class LoginFrame  {
+    private StartGameFrame startGameFrame;
+
     //主方法,放置组件+按钮响应
-    public LoginFrame() {
+    public LoginFrame(StartGameFrame startGameFrame) {
+        this.startGameFrame=startGameFrame;
         initComponents();
         clickButton();
         setupEnterKeyListener();
+
+        //禁用默认的窗口关闭行为,当点击关闭按钮时窗口不会自动关闭
+        loginFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        //添加自定义的窗口关闭监听器
+        loginFrame.addWindowListener((new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                startGameFrame.closeLoginFrame();//通知开始界面恢复状态
+                loginFrame.dispose();//关闭登录窗口
+            }
+        }));
     }
+
     //新增：设置回车键监听
     private void setupEnterKeyListener() {
         // 在密码框上添加回车键监听
@@ -45,30 +63,33 @@ public class LoginFrame  {
             }
         });
     }
+
     //显示可见+exitOnClose
     public void show(){
         loginFrame.setVisible(true);
-        loginFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
+
     //打开象棋界面
     private void openChessBoard(boolean isLoggedIn, String username){
         loginFrame.dispose();//关闭当前登录界面
         //先打开UserIDFrame
         SwingUtilities.invokeLater(() -> {
-            UserIDFrame userIDFrame = new UserIDFrame(isLoggedIn, username);
+            UserIDFrame userIDFrame = new UserIDFrame(isLoggedIn, username,startGameFrame);
             userIDFrame.showFrame();
         });
 
     }
+
     //打开注册界面
     private void openRegisterFrame(){
         loginFrame.dispose();
         SwingUtilities.invokeLater(()->{
-            RegisterFrame registerFrame=new RegisterFrame();
+            RegisterFrame registerFrame=new RegisterFrame(startGameFrame);
             registerFrame.setVisible(true);
             registerFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         });
     }
+
     //注册与登录两个按钮功能
     private void clickButton(){
         LoginButton.addActionListener(e -> {
@@ -86,24 +107,21 @@ public class LoginFrame  {
             openRegisterFrame();
         });
         GuestLoginButton.addActionListener(e -> {
-            openChessBoard(false,"Guest");
+
+            loginFrame.dispose();
+            SwingUtilities.invokeLater(()->{
+                UserIDFrame userIDFrame=new UserIDFrame(false,"Guest",startGameFrame);
+                userIDFrame.showFrame();
+            });
         });
 
     }
-    /*private void testClickButton(){
-        LoginButton.addActionListener(e -> {
-            String username=UsernameField.getText();
-            String password=new String(PasswordField.getPassword());
-            if (validator.testValidate(username,password)){
-                openChessBoard();
-            }else {
-                //使用JOptionPane类创建弹出对话框,用showMessageDialog方法显示错误信息
-                JOptionPane.showMessageDialog(loginFrame,"Invalid username or password!");
-                //this指窗体本身
-            }
-        });
-    }*/
+
+    public JFrame getFrame() {
+        return loginFrame;
+    }
     //JFormDesigner自带的,写入组件
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         // Generated using JFormDesigner Evaluation license - 苏云翼

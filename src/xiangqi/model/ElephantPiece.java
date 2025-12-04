@@ -3,12 +3,12 @@ package xiangqi.model;
 import java.util.Objects;
 
 public class ElephantPiece extends AbstractPiece{
-    int CurrentRow=getRow();
-    int CurrentCol=getCol();
     public ElephantPiece(String name, int row, int col, boolean isRed) {
         super(name, row, col, isRed);
     }
     public boolean canMoveTo(int targetRow, int targetCol, ChessBoardModel model) {
+        int CurrentRow=getRow();
+        int CurrentCol=getCol();
         if(Math.abs(CurrentRow-targetRow)!=2||Math.abs(CurrentCol-targetCol)!=2){
             return false;
         }//位移量判定，象的位移量恒为横2竖2
@@ -46,9 +46,6 @@ public class ElephantPiece extends AbstractPiece{
                 return false;
             }
         }
-
-        CurrentCol = targetCol;
-        CurrentRow = targetRow;
 
         return true;
     }

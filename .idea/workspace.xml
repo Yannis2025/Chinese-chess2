@@ -5,16 +5,51 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fa5716f5-5836-4edf-9801-7c42cf73b7bd" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/src/xiangqi/OpenChessFrame.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/xiangqi/ui/Login/ModeFrame.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/xiangqi/ui/Login/ModeFrame.jfd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/Button/quit.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Chinese-chess2/resources/Button/back_press.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Chinese-chess2/resources/Button/new_press.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Chinese-chess2/resources/Sounds/check.wav" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Chinese-chess2/resources/Sounds/check.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Chinese-chess2/xiangqi/XiangqiApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Chinese-chess2/xiangqi/XiangqiApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Chinese-chess2/xiangqi/model/AdvisorPiece.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Chinese-chess2/xiangqi/model/AdvisorPiece.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Chinese-chess2/xiangqi/model/CannonPiece.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Chinese-chess2/xiangqi/model/CannonPiece.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Chinese-chess2/xiangqi/model/ChessBoardModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Chinese-chess2/xiangqi/model/ChessBoardModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Chinese-chess2/xiangqi/model/ElephantPiece.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Chinese-chess2/xiangqi/model/ElephantPiece.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Chinese-chess2/xiangqi/model/GeneralPiece.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Chinese-chess2/xiangqi/model/GeneralPiece.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Chinese-chess2/xiangqi/model/HorsePiece.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Chinese-chess2/xiangqi/model/HorsePiece.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Chinese-chess2/xiangqi/model/RookPiece.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Chinese-chess2/xiangqi/model/RookPiece.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Chinese-chess2/xiangqi/ui/Game/ChessBoardPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Chinese-chess2/xiangqi/ui/Game/ChessBoardPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Chinese-chess2/xiangqi/ui/Game/ControlPanel$Icon$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Chinese-chess2/xiangqi/ui/Game/ControlPanel$Icon$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Chinese-chess2/xiangqi/ui/Game/ControlPanel$Icon.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Chinese-chess2/xiangqi/ui/Game/ControlPanel$Icon.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Chinese-chess2/xiangqi/ui/Game/ControlPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Chinese-chess2/xiangqi/ui/Game/ControlPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Chinese-chess2/xiangqi/ui/Game/GameFrame$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Chinese-chess2/xiangqi/ui/Game/GameFrame$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Chinese-chess2/xiangqi/ui/Game/GameFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Chinese-chess2/xiangqi/ui/Game/GameFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Chinese-chess2/xiangqi/ui/Login/LoginFrame$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Chinese-chess2/xiangqi/ui/Login/LoginFrame$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Chinese-chess2/xiangqi/ui/Login/LoginFrame$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Chinese-chess2/xiangqi/ui/Login/LoginFrame$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Chinese-chess2/xiangqi/ui/Login/LoginFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Chinese-chess2/xiangqi/ui/Login/LoginFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Chinese-chess2/xiangqi/ui/Login/UserIDFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Chinese-chess2/xiangqi/ui/Login/UserIDFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Chinese-chess2/xiangqi/ui/register/RegisterFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Chinese-chess2/xiangqi/ui/register/RegisterFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Chinese-chess2/xiangqi/ui/register/UserRegister.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/Background/StartGamePanel.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/Background/StartGamePanel.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/Button/back_press.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/Button/new_press.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/Sounds/check.wav" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/Sounds/check.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/xiangqi/OpenChessFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/xiangqi/OpenChessFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/xiangqi/XiangqiApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/xiangqi/XiangqiApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/xiangqi/model/AdvisorPiece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/xiangqi/model/AdvisorPiece.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/xiangqi/model/CannonPiece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/xiangqi/model/CannonPiece.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/xiangqi/model/ChessBoardModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/xiangqi/model/ChessBoardModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/xiangqi/model/ElephantPiece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/xiangqi/model/ElephantPiece.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/xiangqi/model/GeneralPiece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/xiangqi/model/GeneralPiece.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/xiangqi/model/HorsePiece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/xiangqi/model/HorsePiece.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/xiangqi/model/RookPiece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/xiangqi/model/RookPiece.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/xiangqi/ui/Game/ChessBoardPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/xiangqi/ui/Game/ChessBoardPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/xiangqi/ui/Game/ControlPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/xiangqi/ui/Game/ControlPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/xiangqi/ui/Game/GameFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/xiangqi/ui/Game/GameFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/xiangqi/ui/Game/StartGameFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/xiangqi/ui/Game/StartGameFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/xiangqi/ui/Login/LoginFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/xiangqi/ui/Login/LoginFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/xiangqi/ui/Login/UserIDFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/xiangqi/ui/Login/UserIDFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/xiangqi/ui/register/RegisterFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/xiangqi/ui/register/RegisterFrame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,32 +86,38 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/计算机/Chinese-chess/src/xiangqi/model&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
-    &quot;应用程序.OpenGameFrame.executor&quot;: &quot;Run&quot;,
-    &quot;应用程序.XiangqiApplication.executor&quot;: &quot;Run&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/计算机/Chinese-chess/src/resources/Background",
+    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
+    "应用程序.OpenChessFrame.executor": "Run",
+    "应用程序.OpenGameFrame.executor": "Run",
+    "应用程序.StartGameFrame.executor": "Run",
+    "应用程序.XiangqiApplication.executor": "Run"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\计算机\Chinese-chess\src\resources\Background" />
       <recent name="D:\计算机\Chinese-chess\src\xiangqi\model" />
       <recent name="D:\计算机\Chinese-chess\src" />
       <recent name="D:\计算机\Chinese-chess" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\计算机\Chinese-chess\src\resources\Button" />
+      <recent name="D:\计算机\Chinese-chess\src\resources\Sounds" />
+      <recent name="D:\计算机\Chinese-chess\src\resources\Background" />
       <recent name="D:\计算机\Chinese-chess\src\Icon" />
       <recent name="D:\计算机\Chinese-chess\src\resources\Popup" />
-      <recent name="D:\计算机\Chinese-chess\src\resources\Sounds" />
-      <recent name="D:\计算机\Chinese-chess\src\Sounds" />
-      <recent name="D:\计算机\Chinese-chess\src\resources\Background" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="xiangqi.ui.Game" />
     </key>
   </component>
   <component name="TaskManager">
@@ -89,6 +130,17 @@
     </task>
     <servers />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
@@ -99,7 +151,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/xiangqi/ui/Login/UserIDFrame.java</url>
-          <line>249</line>
+          <line>272</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -112,9 +164,27 @@
           <line>28</line>
           <option name="timeStamp" value="15" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/xiangqi/ui/Login/UserIDFrame.java</url>
+          <line>168</line>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/xiangqi/ui/register/RegisterFrame.java</url>
+          <line>27</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/xiangqi/ui/Game/GameFrame.java</url>
+          <line>193</line>
+          <properties>
+            <option name="lambda-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/xiangqi/ui/Game/ChessBoardPanel.java</url>
-          <line>141</line>
+          <line>143</line>
           <properties class="xiangqi.ui.Game.ChessBoardPanel" method="drawBoard">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -123,7 +193,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/xiangqi/ui/Game/ControlPanel.java</url>
-          <line>32</line>
+          <line>33</line>
           <properties class="xiangqi.ui.Game.ControlPanel" method="initComponents">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -131,17 +201,8 @@
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/xiangqi/ui/Game/ControlPanel.java</url>
-          <line>170</line>
-          <properties class="xiangqi.ui.Game.ControlPanel" method="setNewGameListener">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/xiangqi/ui/Game/GameFrame.java</url>
-          <line>241</line>
+          <line>296</line>
           <properties class="xiangqi.ui.Game.GameFrame" method="toggleMusic">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -149,22 +210,31 @@
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/xiangqi/ui/Game/GameFrame.java</url>
-          <line>283</line>
-          <properties class="xiangqi.ui.Game.GameFrame" method="setGameEnded">
+          <url>file://$PROJECT_DIR$/src/xiangqi/ui/Login/UserIDFrame.java</url>
+          <line>26</line>
+          <properties class="xiangqi.ui.Login.UserIDFrame" method="&lt;init&gt;">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
-          <option name="timeStamp" value="12" />
+          <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/xiangqi/ui/Game/GameFrame.java</url>
-          <line>262</line>
-          <properties class="xiangqi.ui.Game.GameFrame" method="restartGame">
+          <url>file://$PROJECT_DIR$/src/xiangqi/ui/Login/LoginFrame.java</url>
+          <line>93</line>
+          <properties class="xiangqi.ui.Login.LoginFrame" method="clickButton">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
-          <option name="timeStamp" value="14" />
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/xiangqi/ui/Login/LoginFrame.java</url>
+          <line>24</line>
+          <properties class="xiangqi.ui.Login.LoginFrame" method="&lt;init&gt;">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="20" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

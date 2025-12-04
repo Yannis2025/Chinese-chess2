@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 public class GameFrame extends JFrame {
+    private StartGameFrame startGameFrame;
     private ChessBoardModel model;
     private ChessBoardPanel boardPanel;
     private ControlPanel controlPanel;
@@ -25,13 +26,14 @@ public class GameFrame extends JFrame {
     private String blackNickname = "黑方";
 
     //构造函数,无存档
-    public GameFrame(String title, boolean isLoggedIn, String username, String redNickname, String blackNickname) {
+    public GameFrame(String title, boolean isLoggedIn, String username, String redNickname, String blackNickname,StartGameFrame startGameFrame) {
         super(title);
         this.isLoggedIn = isLoggedIn;
         this.username = username;
         this.saveManager = new SaveManager();
         this.controlPanel = new ControlPanel();
         this.soundManager=SoundManager.getInstance();
+        this.startGameFrame=startGameFrame;
         // 设置昵称
         if (redNickname != null && !redNickname.trim().isEmpty()) {
             this.redNickname = redNickname.trim();
@@ -58,8 +60,15 @@ public class GameFrame extends JFrame {
     }
 
     // 简化构造函数，用于有存档的情况
-    public GameFrame(String title, boolean isLoggedIn, String username) {
-        this(title, isLoggedIn, username, "红方", "黑方");
+    public GameFrame(String title, boolean isLoggedIn, String username,StartGameFrame startGameFrame) {
+        //调用第一个构造函数,但是默认了Nickname
+        this(title, isLoggedIn, username, "红方", "黑方",startGameFrame);
+    }
+
+    //测试用构造函数
+    public GameFrame(String title, boolean isLoggedIn, String username,
+                     String redNickname, String blackNickname) {
+        this(title, isLoggedIn, username, redNickname, blackNickname, null);
     }
 
     // 保存游戏（总是包含昵称）
@@ -183,6 +192,39 @@ public class GameFrame extends JFrame {
 
         // 新局按钮事件
         controlPanel.setNewGameListener(e -> newGame());
+
+        //退出按钮事件
+        controlPanel.setQuitListener(e -> {
+            int choice = JOptionPane.showConfirmDialog(this, "确定退出游戏?", "退出游戏",
+                    JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+
+            if (choice == JOptionPane.YES_OPTION) {
+                if (isLoggedIn && !username.equals("Guest")) {
+                    int choice2 = JOptionPane.showConfirmDialog(this, "是否保存当前游戏进度？", "保存游戏",
+                            JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+                    if (choice2 == JOptionPane.YES_OPTION) {
+                        boolean saved = saveGame();
+                        soundManager.stopBackgroundMusic();
+                        if (saved) {
+                            JOptionPane.showMessageDialog(this, "游戏已保存！");
+                        } else {
+                            JOptionPane.showMessageDialog(this, "保存失败！");
+                        }
+                    }
+                }
+                this.dispose();//直接关闭游戏
+                if (startGameFrame != null) {
+                    // 重新创建开始界面
+                    SwingUtilities.invokeLater(() -> {
+                        StartGameFrame newStartFrame = new StartGameFrame();
+                        newStartFrame.showFrame();
+                    });
+                }
+                // 停止背景音乐
+                soundManager.stopBackgroundMusic();
+            }
+        });
     }
 
     private void setupWindowListener() {
@@ -198,11 +240,19 @@ public class GameFrame extends JFrame {
 
         if (gameEnded){
             this.dispose();//直接关闭游戏
-            // 停止背景音乐
-            soundManager.stopBackgroundMusic();
-            new xiangqi.ui.Login.LoginFrame().show();
+            if (startGameFrame != null) {
+                // 重新创建开始界面
+                SwingUtilities.invokeLater(() -> {
+                    StartGameFrame newStartFrame = new StartGameFrame();
+                    newStartFrame.showFrame();
+                });
+            }
             return;
         }
+
+        // 停止背景音乐
+        soundManager.stopBackgroundMusic();
+
         // 只有登录用户且游戏未结束时才询问保存
         if (isLoggedIn && !username.equals("Guest")) {
             int choice = JOptionPane.showConfirmDialog(this, "是否保存当前游戏进度？", "保存游戏",
@@ -222,8 +272,13 @@ public class GameFrame extends JFrame {
         // 关闭游戏，返回登录界面
         this.dispose();
         soundManager.stopBackgroundMusic();
-        new xiangqi.ui.Login.LoginFrame().show();
-
+        if (startGameFrame != null) {
+            // 重新创建开始界面
+            SwingUtilities.invokeLater(() -> {
+                StartGameFrame newStartFrame = new StartGameFrame();
+                newStartFrame.showFrame();
+            });
+        }
     }
 
     private void undoMove() {

@@ -1,4 +1,5 @@
 package xiangqi;
+import xiangqi.ui.Game.StartGameFrame;
 import xiangqi.ui.Login.LoginFrame;
 
 import javax.swing.*;
@@ -6,8 +7,8 @@ import javax.swing.*;
 public class XiangqiApplication {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(()->{
-            LoginFrame loginFrame=new LoginFrame();
-            loginFrame.show();
+            StartGameFrame startFrame = new StartGameFrame();
+            startFrame.showFrame();
         });
     }
 }

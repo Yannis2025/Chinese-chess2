@@ -5,26 +5,39 @@
 package xiangqi.ui.register;
 
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import javax.swing.*;
+
+import xiangqi.ui.Game.StartGameFrame;
 import xiangqi.ui.Login.LoginFrame;
 /**
  * @author yanni
  */
 public class RegisterFrame extends JFrame {
-    public RegisterFrame() {
+    private StartGameFrame startGameFrame;
+    public RegisterFrame(StartGameFrame startGameFrame) {
+       this.startGameFrame=startGameFrame;
        initComponents();
        clickCancel();
        clickConfirm();
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                dispose();
+                startGameFrame.closeLoginFrame();
+            }
+        });
     }
     //Cancel按钮
     private void clickCancel(){
         CancelButton.addActionListener(e -> {
             this.dispose();//关闭当前界面
-            LoginFrame loginFrame=new LoginFrame();//返回登录界面
-            loginFrame.show();
+            startGameFrame.closeLoginFrame();
         });
     }
     //Confirm按钮
@@ -50,8 +63,7 @@ public class RegisterFrame extends JFrame {
             if (save(username,password)){
                 JOptionPane.showMessageDialog(this,"注册成功!");
                 this.dispose();
-                LoginFrame loginFrame=new LoginFrame();
-                loginFrame.show();
+                startGameFrame.closeLoginFrame();
             }else {
                 JOptionPane.showMessageDialog(this,"注册失败,请重试!");
             }
